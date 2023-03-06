@@ -1,0 +1,28 @@
+.playlist-item {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+playlist-item-menu {
+  margin-right: 0.8rem;
+}
+
+.playlist-item__title {
+  cursor: pointer;
+  max-width: 350px;
+  max-height: 70px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.playlist-item__title.active {
+  font-weight: 800;
+}
+
+.playlist-item-menu button {
+  max-width: 40px;
+  min-width: 40px;
+}
