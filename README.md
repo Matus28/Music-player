@@ -1,2 +1,2 @@
 # Music-player
-Music-player web app
+Web application for creating/editting your own playlists with basic features for controling of playback.
