@@ -1,9 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
+import { PlaylistsProvider } from "./context/PlaylistsContext";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <App />
+    <PlaylistsProvider>
+      <App />
+    </PlaylistsProvider>
   </React.StrictMode>
 );
