@@ -1,34 +1,30 @@
 import * as React from "react";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { EditPlaylistMenu } from "../Menu/EditPlaylistMenu";
-import "./PlaylistItem.css";
-import { Button } from "@mui/material";
+import { EditMenu } from "../Menu/EditMenu";
 import { EditPlaylistForm } from "../Dialogs/EditPlaylistForm";
 import { Playlist } from "../../utils/types";
+import { ConfirmDialog } from "../Dialogs/ConfirmDialog";
+import "./PlaylistItem.css";
+import { OptionButton } from "../Button/OptionButton";
 
-export const PlaylistItem = (props: {
+export interface PlaylistItemProps {
   playlist: Playlist;
-  playlists: Playlist[];
   isActive: boolean;
   onItemClick: () => void;
-  onEditPlaylist: (formData: {
-    playlistId: number;
-    playlistName: string;
-  }) => void;
-  onRemovePlaylist: (formData: { playlistId: number }) => void;
-}): JSX.Element => {
+}
+
+export const PlaylistItem = (props: PlaylistItemProps): JSX.Element => {
+  const [openEditDialog, setOpenEditDialog] = React.useState(false);
+  const [openConfirmDialog, setOpenConfirmDialog] = React.useState(false);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+  const open = Boolean(anchorEl);
   const status = props.isActive ? "active" : "";
 
-  const [openEditDialog, setOpenEditDialog] = React.useState(false);
-
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const open = Boolean(anchorEl);
-
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleClose = (): void => {
     setAnchorEl(null);
   };
 
@@ -39,7 +35,7 @@ export const PlaylistItem = (props: {
         setOpenEditDialog(true);
         break;
       case "remove":
-        props.onRemovePlaylist({ playlistId: props.playlist.playlistId });
+        setOpenConfirmDialog(true);
         break;
       default:
         break;
@@ -59,20 +55,10 @@ export const PlaylistItem = (props: {
         </div>
         {props.playlist.playlistIsDeletable && (
           <div className="playlist-item-menu">
-            <Button
-              id="basic-button"
-              aria-controls={open ? "basic-menu" : undefined}
-              aria-haspopup="true"
-              aria-expanded={open ? "true" : undefined}
-              onClick={handleClick}
-            >
-              <MoreVertIcon
-                className="playlist-item__delete"
-                sx={{ color: "#646464", "&:hover": { color: "#222222" } }}
-              />
-            </Button>
-            <EditPlaylistMenu
+            <OptionButton isOpen={open} handleClick={handleClick} />
+            <EditMenu
               anchorEl={anchorEl}
+              options={["edit", "remove"]}
               open={open}
               onClose={handleClose}
               onSelect={onSelect}
@@ -82,8 +68,14 @@ export const PlaylistItem = (props: {
                 open={openEditDialog}
                 handleClose={(): void => setOpenEditDialog(false)}
                 playlist={props.playlist}
-                playlists={props.playlists}
-                onUpdatePlaylist={props.onEditPlaylist}
+              />
+            )}
+            {openConfirmDialog && (
+              <ConfirmDialog
+                open={openConfirmDialog}
+                playlistId={props.playlist.playlistId}
+                playlistTitle={props.playlist.playlistTitle}
+                handleClose={(): void => setOpenConfirmDialog(false)}
               />
             )}
           </div>

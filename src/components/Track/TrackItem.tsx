@@ -1,7 +1,7 @@
-import { Button } from "@mui/material";
 import * as React from "react";
-import { EditPlaylistMenu } from "../Menu/EditPlaylistMenu";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { EditMenu } from "../Menu/EditMenu";
+import { ConfirmDialog } from "../Dialogs/ConfirmDialog";
+import { OptionButton } from "../Button/OptionButton";
 import "./TrackItem.css";
 
 export const TrackItem = (props: {
@@ -9,12 +9,15 @@ export const TrackItem = (props: {
   title: string;
   interpret: string;
   songLength: string;
+  playlistTitle: string;
   isActive: boolean | null;
   onItemClick: () => void;
+  onRemoveSong: (formData: { songId: number }) => void;
 }): JSX.Element => {
-  const status = props.isActive ? "active" : "";
-
+  const [openConfirmDialog, setOpenConfirmDialog] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+  const status = props.isActive ? "active" : "";
   const open = Boolean(anchorEl);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -23,6 +26,17 @@ export const TrackItem = (props: {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const onSelect = (option: string) => {
+    handleClose();
+    switch (option) {
+      case "remove":
+        setOpenConfirmDialog(true);
+        break;
+      default:
+        break;
+    }
   };
 
   return (
@@ -38,24 +52,23 @@ export const TrackItem = (props: {
           <div className="track-item__title">{`${props.title} (${props.interpret})`}</div>
           <div className="track-item__length">{props.songLength}</div>
         </div>
-        <div className="tracklist-item-menu">
-          <Button
-            id="basic-button"
-            aria-controls={open ? "basic-menu" : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? "true" : undefined}
-            onClick={handleClick}
-          >
-            <MoreVertIcon
-              className="playlist-item__delete"
-              sx={{ color: "#646464", "&:hover": { color: "#222222" } }}
-            />
-          </Button>
-          <EditPlaylistMenu
+        <div className="track-item-menu">
+          <OptionButton isOpen={open} handleClick={handleClick} />
+          <EditMenu
             anchorEl={anchorEl}
+            options={["remove"]}
             open={open}
             onClose={handleClose}
+            onSelect={onSelect}
           />
+          {openConfirmDialog && (
+            <ConfirmDialog
+              open={openConfirmDialog}
+              playlistTitle={props.playlistTitle}
+              songTitle={props.title}
+              handleClose={(): void => setOpenConfirmDialog(false)}
+            />
+          )}
         </div>
       </div>
     </li>
