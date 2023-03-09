@@ -7,7 +7,7 @@ export const Cover = (props: { path?: string }): JSX.Element => {
         src={
           props.path ? props.path : "../../../public/img/music-placeholder.png"
         }
-        alt="Image of album cover"
+        alt="Currently playing song's album cover."
       />
     </div>
   );
