@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "es2022" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
+    "lib": ["es2020"],
+    "module": "CommonJS" /* Specify what module code is generated. */,
+    "rootDir": "./src" /* Specify the root folder within your source files. */,
+    "types": ["node"],
+    "noUncheckedIndexedAccess": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "baseUrl": ".",
+    "resolveJsonModule": true /* Enable importing .json files. */,
+    "outDir": "dist" /* Specify an output folder for all emitted files. */,
+    "esModuleInterop": true /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */,
+    "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */,
+    "strict": true /* Enable all strict type-checking options. */,
+    "noImplicitAny": true /* Enable error reporting for expressions and declarations with an implied 'any' type. */,
+    "skipLibCheck": true /* Skip type checking all .d.ts files. */,
+    "typeRoots": ["./node_modules/@types", "./src/types"]
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "drizzle"]
+}
