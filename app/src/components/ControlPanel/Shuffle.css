@@ -1,0 +1,11 @@
+.shuffle-btn {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.shuffle-btn.active {
+  filter: invert(57%) sepia(60%) saturate(329%) hue-rotate(91deg)
+    brightness(94%) contrast(91%);
+}

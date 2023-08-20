@@ -1,0 +1,5 @@
+
+> frontend@0.0.0 lint /home/matus/greenfox/01_Portfolio/music-player/Music-player/apps/frontend
+> tsc --noEmit && eslint "src/**/*.ts*"
+
+ ELIFECYCLE  Command failed.

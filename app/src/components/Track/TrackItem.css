@@ -1,0 +1,48 @@
+.track-item {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.track-item-info {
+  width: 100%;
+  max-height: 50px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.track-item__index {
+  margin-right: 1rem;
+}
+
+.track-item__title {
+  max-width: 380px;
+  max-height: inherit;
+  overflow: hidden;
+  display: inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.track-item__title,
+.track-item__length {
+  color: #202020;
+}
+
+.track-item__length {
+  position: absolute;
+  right: 0.8rem;
+}
+
+.track-item-info.active {
+  font-weight: 800;
+}
+
+.track-item-menu button {
+  max-width: 40px;
+  min-width: 40px;
+}
