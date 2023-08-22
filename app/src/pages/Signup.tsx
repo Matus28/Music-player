@@ -4,7 +4,6 @@ import { Card } from "../components/Card/Card";
 import { CustomizedTextField } from "../components/Input/CustomizedTextField";
 import { PasswordTextField } from "../components/Input/PasswordTextField";
 
-import "./Signup.css";
 import { useSignup } from "../hooks/useSignup";
 
 const Signup = (): JSX.Element => {

@@ -4,6 +4,7 @@ import App from "./App";
 import { AuthContextProvider } from "./context/AuthContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { SnackBarContextProvider } from "./context/SnackbarContext";
+import "./main.css";
 
 const queryClient: QueryClient = new QueryClient();
 

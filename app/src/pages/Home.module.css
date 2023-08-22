@@ -1,18 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Fugaz+One&family=Neucha&family=Ubuntu:wght@300&display=swap");
-
-* {
-  font-family: "Ubuntu", sans-serif;
-  /* color: #646464; */
-  line-height: 2.5rem;
-  margin: 0;
-  padding: 0;
-}
-
-.body {
-  font-size: 15px;
-}
-
-.main-container {
+.container {
   height: 100vh;
   width: 100vw;
   box-sizing: border-box;
@@ -22,7 +8,7 @@
   align-items: center;
 }
 
-.music-player {
+.musicPlayer {
   display: flex;
   flex-flow: row wrap;
   align-items: flex-start;
@@ -32,15 +18,15 @@
   max-width: 1000px;
 }
 
-.music-player-left-panel {
+.leftPanel {
   min-width: 450px;
 }
 
-.music-player-right-panel {
+.rightPanel {
   min-width: 550px;
 }
 
-.music-player-bottom-panel {
+.bottomPanel {
   flex-basis: 100%;
   height: 75px;
   background-color: white;

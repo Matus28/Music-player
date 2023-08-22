@@ -1,16 +1,18 @@
 import * as React from "react";
-import Header from "../components/Header/Header";
+import Logo from "../components/Logo/Logo";
 import { CurrentlyPlaying } from "../components/CurrentlyPlaying/CurrentlyPlaying";
 import { PlaylistList } from "../components/Playlist/PlaylistList";
 import { Playlist, Song } from "../utils/types";
 import { TrackList } from "../components/Track/TrackList";
 import { setTrackListOrder } from "../utils/setTrackListOrder";
 import { ControlPanel } from "../components/ControlPanel/ControlPanel";
-import "./Home.css";
 import { useTrackList } from "../hooks/useTrackList";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useLibrary } from "../hooks/useLibrary";
 import { processData } from "../utils/processData";
+import { Container } from "../components/Container/Container";
+import styles from "./Home.module.css";
+import { Header } from "../components/Header/Header";
 
 const Home = (): JSX.Element => {
   const { state: userValue } = useAuthContext();
@@ -132,48 +134,51 @@ const Home = (): JSX.Element => {
   };
 
   return (
-    <div className="main-container">
-      <div className="music-player">
-        <div className="music-player-left-panel">
-          <Header />
-          <PlaylistList
-            playlists={playlists}
-            selectedPlaylist={currentPlaylist}
-            onSelect={handleSelectPlaylist}
-          />
-        </div>
-        <div className="music-player-right-panel">
-          <CurrentlyPlaying currentSong={currentSong} playlists={playlists} />
-          <TrackList
-            data={currentTrackList}
-            playlistTitle={currentPlaylist?.playlistName ?? ""}
-            playlistId={currentPlaylist?.playlistId ?? -1}
-            selectedSong={currentSong}
-            onSelect={handleSelectSong}
-            onRemoveSong={handleRemoveSong}
-          />
-        </div>
-        <div className="music-player-bottom-panel">
-          <ControlPanel
-            musicPlayer={musicPlayer}
-            currentTrackList={currentTrackList ?? []}
-            currentSong={currentSong}
-            songIndex={songIndex}
-            ended={triggerEnd}
-            duration={duration}
-            position={position}
-            isShuffle={isShuffle}
-            onSetSongIndex={setSongIndex}
-            onSetCurrentSong={setCurrentSong}
-            onSetTriggerEnd={setTriggerEnd}
-            onSetDuration={setDuration}
-            onSetPosition={setPosition}
-            onHandleNext={handleNext}
-            onShuffleHandle={handleToggleShuffle}
-          />
+    <Container>
+      <Header />
+      <div className={styles.container}>
+        <div className={styles.musicPlayer}>
+          <div className={styles.leftPanel}>
+            <Logo size="regular" />
+            <PlaylistList
+              playlists={playlists}
+              selectedPlaylist={currentPlaylist}
+              onSelect={handleSelectPlaylist}
+            />
+          </div>
+          <div className={styles.rightPanel}>
+            <CurrentlyPlaying currentSong={currentSong} playlists={playlists} />
+            <TrackList
+              data={currentTrackList}
+              playlistTitle={currentPlaylist?.playlistName ?? ""}
+              playlistId={currentPlaylist?.playlistId ?? -1}
+              selectedSong={currentSong}
+              onSelect={handleSelectSong}
+              onRemoveSong={handleRemoveSong}
+            />
+          </div>
+          <div className={styles.bottomPanel}>
+            <ControlPanel
+              musicPlayer={musicPlayer}
+              currentTrackList={currentTrackList ?? []}
+              currentSong={currentSong}
+              songIndex={songIndex}
+              ended={triggerEnd}
+              duration={duration}
+              position={position}
+              isShuffle={isShuffle}
+              onSetSongIndex={setSongIndex}
+              onSetCurrentSong={setCurrentSong}
+              onSetTriggerEnd={setTriggerEnd}
+              onSetDuration={setDuration}
+              onSetPosition={setPosition}
+              onHandleNext={handleNext}
+              onShuffleHandle={handleToggleShuffle}
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </Container>
   );
 };
 

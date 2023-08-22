@@ -14,18 +14,22 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           height: "30px",
-          padding: "0px",
+          padding: "2px",
+          paddingRight: "10px",
           backgroundColor: "#eee",
           "&.MuiOutlinedInput-notchedOutline": {
             border: "none",
           },
           "&.Mui-focused": {
             "& .MuiOutlinedInput-notchedOutline": {
-              border: "2px solid #045db6",
+              border: "2px solid black",
             },
           },
           "&.Mui-error": {
-            border: "1px solid #ff6161",
+            border: "1px solid black",
+          },
+          "&:hover fieldset": {
+            border: "none",
           },
         },
       },

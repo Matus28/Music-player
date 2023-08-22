@@ -1,0 +1,20 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.regular {
+  img {
+    height: 100px;
+  }
+}
+
+.small {
+  img {
+    height: 30px;
+    position: relative;
+  }
+}

@@ -7,7 +7,8 @@ const theme = createTheme({
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
-          margin: "8px",
+          margin: "6px",
+          padding: "2px",
           height: "30px",
           width: "230px",
           backgroundColor: "#eee",
@@ -16,11 +17,14 @@ const theme = createTheme({
           },
           "&.Mui-focused": {
             "& .MuiOutlinedInput-notchedOutline": {
-              border: "2px solid #045db6",
+              border: "2px solid black",
             },
           },
           "&.Mui-error": {
-            border: "2px solid #ff6161",
+            border: "2px solid black",
+          },
+          "&:hover fieldset": {
+            border: "none",
           },
         },
       },
@@ -44,7 +48,6 @@ export const CustomizedTextField = (props: {
   return (
     <ThemeProvider theme={theme}>
       <TextField
-        data-testid={props.name}
         size="small"
         variant="outlined"
         type={props.type}
@@ -56,8 +59,6 @@ export const CustomizedTextField = (props: {
         required
         value={props.value}
         onChange={onChangeHandler}
-        // error={props.value === ""}
-        // helperText={props.value === "" ? "Empty field!" : " "}
       />
     </ThemeProvider>
   );
