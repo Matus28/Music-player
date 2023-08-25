@@ -22,7 +22,7 @@ function App() {
           ></Route>
           <Route
             path="/signup"
-            element={userValue.user ? <Signup /> : <Navigate to="/" />}
+            element={!userValue.user ? <Signup /> : <Navigate to="/" />}
           ></Route>
         </Routes>
       </BrowserRouter>
