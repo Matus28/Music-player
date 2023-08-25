@@ -11,6 +11,7 @@ export interface FetchUser {
 }
 
 export interface FetchData {
+  username: string;
   email: string;
   password: string;
 }
@@ -22,21 +23,23 @@ export const useSignup = () => {
     mutationFn: async (value: FetchData) => {
       try {
         const { data } = await axios.post(
-          `${import.meta.env.VITE_API_URL}/api/user/signup`,
+          `${import.meta.env.VITE_API_URL}/api/users/signup`,
           value,
           {
             validateStatus(status) {
-              return status === 200;
+              return status === 201;
             },
           }
         );
         return data as FetchUser;
       } catch (error: unknown) {
         if (axios.isAxiosError(error)) {
-          throw new Error(error.response?.data.error);
+          console.log(error.response?.data);
+          console.log("wiiiiiiiiiiiiiiiiiiiiii");
+          throw new Error(error.response?.data.message);
         }
         if (error instanceof Error) {
-          throw new Error("Something went wrong");
+          throw new Error(error.message);
         }
       }
     },
