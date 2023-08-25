@@ -1,0 +1,24 @@
+@use "../../style/style" as *;
+
+.footer {
+  width: 100%;
+  background-color: $global__main-background;
+  z-index: 100;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 0.5rem;
+}
+
+.icons {
+  display: flex;
+  flex-flow: row nowrap;
+  column-gap: 0.5rem;
+}
+
+.author {
+  font-size: 0.8rem;
+}
