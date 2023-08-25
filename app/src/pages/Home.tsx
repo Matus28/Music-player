@@ -11,8 +11,8 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import { useLibrary } from "../hooks/useLibrary";
 import { processData } from "../utils/processData";
 import { Container } from "../components/Container/Container";
-import styles from "./Home.module.css";
-import { Header } from "../components/Header/Header";
+import { NavBar } from "../components/NavBar/NavBar";
+import styles from "./Home.module.scss";
 
 const Home = (): JSX.Element => {
   const { state: userValue } = useAuthContext();
@@ -135,7 +135,7 @@ const Home = (): JSX.Element => {
 
   return (
     <Container>
-      <Header />
+      <NavBar />
       <div className={styles.container}>
         <div className={styles.musicPlayer}>
           <div className={styles.leftPanel}>

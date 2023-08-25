@@ -3,10 +3,14 @@ import { BlueStyledButton } from "../components/Button/CustomizedButton";
 import { Card } from "../components/Card/Card";
 import { CustomizedTextField } from "../components/Input/CustomizedTextField";
 import { PasswordTextField } from "../components/Input/PasswordTextField";
-
 import { useSignup } from "../hooks/useSignup";
+import Footer from "../components/Footer/Footer";
+import { Container } from "../components/Container/Container";
+import { NavBar } from "../components/NavBar/NavBar";
+import styles from "./Signup.module.scss";
 
 const Signup = (): JSX.Element => {
+  const [username, setUsername] = React.useState<string>("");
   const [email, setEmail] = React.useState<string>("");
   const [password, setPassword] = React.useState<string>("");
   const [confirmPassword, setConfirmPassword] = React.useState<string>("");
@@ -22,14 +26,28 @@ const Signup = (): JSX.Element => {
     }
     setIsNotSame(false);
 
-    await signup({ email, password });
+    await signup({ username, email, password });
   };
 
   return (
-    <div className="signup">
-      <Card class="signup">
-        <form id="signup-form" className="signup" onSubmit={handleSubmit}>
+    <Container>
+      <NavBar />
+      <Card>
+        <form
+          id="signup-form"
+          className={styles.signup}
+          onSubmit={handleSubmit}
+        >
           <h1>Sign up</h1>
+          <label htmlFor="username">Username:</label>
+          <CustomizedTextField
+            type={"text"}
+            onChange={setUsername}
+            value={username}
+            name={"username"}
+            isError={error ? true : false}
+          />
+
           <label htmlFor="email">Email:</label>
           <CustomizedTextField
             type={"email"}
@@ -62,14 +80,19 @@ const Signup = (): JSX.Element => {
           >
             Submit
           </BlueStyledButton>
-          {error ? <div className="error">{`${error}`}</div> : <div></div>}
+          {error ? (
+            <div className={styles.error}>{`${error}`}</div>
+          ) : (
+            <div></div>
+          )}
         </form>
-        <div className="terms-and-conditions">
+        <div className={styles.text}>
           By clicking the Submit button, you agree to our{" "}
           <a href="">Terms and Conditions</a> and <a href="">Policy Privacy</a>
         </div>
       </Card>
-    </div>
+      <Footer />
+    </Container>
   );
 };
 
