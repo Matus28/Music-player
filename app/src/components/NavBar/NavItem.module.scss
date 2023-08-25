@@ -1,0 +1,36 @@
+.link {
+  a {
+    position: relative;
+    text-decoration: none;
+    list-style: none;
+    transition: 0.5s all ease;
+    font-weight: 600;
+    &:hover {
+      font-weight: 800;
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      width: 0%;
+      bottom: -0.5rem;
+      left: 0;
+      height: 3px;
+      background-color: rgb(41, 41, 41);
+      border-radius: 1rem;
+      transition: all 0.2s;
+    }
+    &:hover::before {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .link {
+    a {
+      &::before {
+        visibility: hidden;
+      }
+    }
+  }
+}
