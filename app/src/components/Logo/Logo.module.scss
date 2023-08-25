@@ -1,7 +1,6 @@
 .wrapper {
   display: flex;
   align-items: center;
-  height: 40px;
   box-sizing: border-box;
   position: relative;
 }
@@ -9,6 +8,8 @@
 .regular {
   img {
     height: 100px;
+    margin: 1rem;
+    margin-bottom: 55px;
   }
 }
 
