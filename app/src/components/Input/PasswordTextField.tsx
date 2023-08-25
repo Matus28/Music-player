@@ -13,23 +13,25 @@ const theme = createTheme({
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
-          height: "30px",
+          height: "2.5rem",
+          margin: "0",
+          marginBottom: "1.5rem",
           padding: "2px",
           paddingRight: "10px",
-          backgroundColor: "#eee",
+          backgroundColor: "#ffffff00",
           "&.MuiOutlinedInput-notchedOutline": {
             border: "none",
           },
           "&.Mui-focused": {
             "& .MuiOutlinedInput-notchedOutline": {
-              border: "2px solid black",
+              border: "1px solid black",
             },
           },
           "&.Mui-error": {
             border: "1px solid black",
           },
           "&:hover fieldset": {
-            border: "none",
+            border: "1px solid black",
           },
         },
       },
@@ -70,36 +72,34 @@ export function PasswordTextField(props: {
 
   return (
     <ThemeProvider theme={theme}>
-      <div className="password-input">
-        <FormControl sx={{ m: 1, width: "25ch" }} variant="outlined">
-          <OutlinedInput
-            id="outlined-adornment-password"
-            type={showPassword ? "text" : "password"}
-            name={props.name}
-            value={props.value}
-            error={props.isNotSame === true}
-            onChange={onChangeHandler}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge="end"
-                >
-                  {showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            }
-            required
-          />
-          {props.isNotSame && (
-            <FormHelperText error id="password-match-error">
-              {"Passwords do not match."}
-            </FormHelperText>
-          )}
-        </FormControl>
-      </div>
+      <FormControl sx={{ m: 1, margin: 0 }} variant="outlined">
+        <OutlinedInput
+          id="outlined-adornment-password"
+          type={showPassword ? "text" : "password"}
+          name={props.name}
+          value={props.value}
+          error={props.isNotSame === true}
+          onChange={onChangeHandler}
+          endAdornment={
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={handleClickShowPassword}
+                onMouseDown={handleMouseDownPassword}
+                edge="end"
+              >
+                {showPassword ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </InputAdornment>
+          }
+          required
+        />
+        {props.isNotSame && (
+          <FormHelperText error id="password-match-error">
+            {"Passwords do not match."}
+          </FormHelperText>
+        )}
+      </FormControl>
     </ThemeProvider>
   );
 }

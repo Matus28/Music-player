@@ -7,24 +7,23 @@ const theme = createTheme({
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
-          margin: "6px",
+          marginBottom: "1.5rem",
           padding: "2px",
-          height: "30px",
-          width: "230px",
-          backgroundColor: "#eee",
+          height: "2.5rem",
+          backgroundColor: "#ffffff00",
           "&.MuiOutlinedInput-notchedOutline": {
             border: "none",
           },
           "&.Mui-focused": {
             "& .MuiOutlinedInput-notchedOutline": {
-              border: "2px solid black",
+              border: "1px solid black",
             },
           },
           "&.Mui-error": {
-            border: "2px solid black",
+            border: "1px solid black",
           },
           "&:hover fieldset": {
-            border: "none",
+            border: "1px solid black",
           },
         },
       },
