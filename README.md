@@ -30,3 +30,9 @@ The frontend is developed using modern web technologies, including HTML, CSS, an
 
 ### Backend
 The Music Player app's backend employs Express, a Node.js framework, for request handling. The server integrates with a MySQL database to store data, while the Google Drive API enables access and retrieval of music files stored in users' Google Drive accounts.
+
+### Preview - current WIP version
+The printscreen of the current version, which is not finished.
+<div align="center">
+<img src="docs/homepage.png" width="80%" height="80%" align="center" alt="Printscreen homepage of the application.">
+</div>
