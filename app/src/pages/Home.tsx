@@ -13,6 +13,7 @@ import { processData } from "../utils/processData";
 import { Container } from "../components/Container/Container";
 import { NavBar } from "../components/NavBar/NavBar";
 import styles from "./Home.module.scss";
+import Footer from "../components/Footer/Footer";
 
 const Home = (): JSX.Element => {
   const { state: userValue } = useAuthContext();
@@ -178,6 +179,7 @@ const Home = (): JSX.Element => {
           </div>
         </div>
       </div>
+      <Footer />
     </Container>
   );
 };
