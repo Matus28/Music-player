@@ -1,21 +1,10 @@
 import * as React from "react";
-import "./Card.css";
+import styles from "./Card.module.scss";
 
 interface Props {
   children: React.ReactNode;
-  color?: string;
-  isSelected?: boolean;
-  class?: string;
 }
 
 export const Card = (props: Props): JSX.Element => {
-  return (
-    <div
-      className={`card-body ${props.color !== undefined ? props.color : ""} ${
-        props.isSelected ? "active" : ""
-      } ${props.class ?? ""}`}
-    >
-      {props.children}
-    </div>
-  );
+  return <div className={styles.card}>{props.children}</div>;
 };
