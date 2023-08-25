@@ -1,9 +1,11 @@
+@use "./style/style" as global;
 @import url("https://fonts.googleapis.com/css2?family=Fugaz+One&family=Neucha&family=Ubuntu:wght@300&display=swap");
 
 * {
   font-family: "Ubuntu", sans-serif;
   margin: 0;
   padding: 0;
+  color: global.$global__text;
 }
 
 .body {
