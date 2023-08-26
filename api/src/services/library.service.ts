@@ -12,6 +12,7 @@ export type LibraryData = {
   playlistDeletable: boolean | null;
   songId: number;
   songDriveId: string | null;
+  songFile: string | null;
   songName: string | null;
   songArtist: string | null;
   songUrl: string | null;
@@ -42,6 +43,7 @@ export const getLibraryService = async (ownerId: number) => {
         playlistDeletable: playlist.playlistDeletable,
         songId: assignedSong.songId,
         songDriveId: song.songDriveId,
+        songFile: song.songFile,
         songName: song.songName,
         songArtist: song.songArtist,
         songUrl: song.songUrl,
