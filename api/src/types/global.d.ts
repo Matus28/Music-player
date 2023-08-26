@@ -12,6 +12,11 @@ declare global {
     cover: string;
   }
 
+  interface FilteredResult {
+    toAdd: SongDriveData[];
+    toUpdate: SongDriveData[];
+  }
+
   interface Metadata {
     name: string;
     author: string;
@@ -20,6 +25,7 @@ declare global {
 
   interface SongData {
     songDriveId: string;
+    songFile: string;
     songName: string;
     songArtist: string;
     songUrl: string;
