@@ -39,7 +39,7 @@ app.listen(PORT, () => {
   console.log(`[API]: Server is running on http://localhost:${PORT}`);
 });
 
-// Updates DB every hour
+// Updates DB in intervals
 const scheduler = new ToadScheduler();
 
 const task = new AsyncTask(
