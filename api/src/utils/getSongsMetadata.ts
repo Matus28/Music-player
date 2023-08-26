@@ -10,14 +10,21 @@ export const getSongsMetadata = async (
   for (let i: number = 0; i < songList.length; i++) {
     const fileName = await downloadSong(songList[i], i);
     const metadata = await extractData(fileName ?? "");
+    let minutes: number = 0;
+    let seconds: number = 0;
 
     if (metadata?.format.duration) {
-      const songDuration = `${Math.floor(
-        metadata?.format.duration / 60
-      )}:${Math.ceil(
+      minutes = Math.floor(metadata?.format.duration / 60);
+      seconds = Math.ceil(
         metadata?.format.duration -
           Math.floor(metadata?.format.duration / 60) * 60
-      )}`;
+      );
+    }
+
+    if (metadata?.format.duration) {
+      const songDuration = `${minutes < 10 ? `0${minutes}` : minutes}:${
+        seconds < 10 ? `0${seconds}` : seconds
+      }`;
 
       result.push({
         songDriveId: songList[i]?.id ?? "",
