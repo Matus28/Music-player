@@ -3,10 +3,12 @@ import { addSongs } from "./addSongs";
 import { filterSongs } from "./filterSongs";
 import { getSongsDataTask } from "./getSongsDataTask";
 import { getSongsMetadata } from "./getSongsMetadata";
+import { updateSong } from "./updateSongs";
 
 export const updateDatabase = async (): Promise<boolean> => {
   let taskSuccessful = true;
   let songsToAdd: SongDriveData[] = [];
+  let songsToUpdate: SongDriveData[] = [];
   let songsWithMeta: NewSong[] = [];
 
   try {
@@ -23,10 +25,14 @@ export const updateDatabase = async (): Promise<boolean> => {
 
   try {
     const filteredSongs = await filterSongs(songsToAdd);
-    if (filteredSongs.length === 0) {
+    if (
+      filteredSongs.toAdd.length === 0 &&
+      filteredSongs.toUpdate.length === 0
+    ) {
       return taskSuccessful;
     } else {
-      songsToAdd = filteredSongs;
+      songsToAdd = filteredSongs.toAdd;
+      songsToUpdate = filteredSongs.toUpdate;
     }
   } catch (error) {
     taskSuccessful = false;
@@ -46,7 +52,16 @@ export const updateDatabase = async (): Promise<boolean> => {
   }
 
   try {
-    const result = await addSongs(songsWithMeta);
+    songsToUpdate.map(async (songToUpdate) => {
+      await updateSong(songToUpdate);
+    });
+  } catch (error) {
+    taskSuccessful = false;
+    console.log(error);
+  }
+
+  try {
+    await addSongs(songsWithMeta);
   } catch (error) {
     taskSuccessful = false;
     console.log(error);

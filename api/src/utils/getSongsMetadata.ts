@@ -2,7 +2,6 @@ import * as fs from "fs";
 import axios, { AxiosResponse } from "axios";
 import { IAudioMetadata, parseFile } from "music-metadata";
 import { NewSong } from "../schema/song";
-// import { inspect } from "util";
 
 export const getSongsMetadata = async (
   songList: SongDriveData[]
@@ -22,6 +21,7 @@ export const getSongsMetadata = async (
 
       result.push({
         songDriveId: songList[i]?.id ?? "",
+        songFile: songList[i]?.name,
         songName: metadata.common.title ?? "",
         songArtist: metadata.common.artist ?? "",
         songUrl: songList[i]?.url ?? "",
@@ -32,10 +32,6 @@ export const getSongsMetadata = async (
 
     await removeSong(fileName ?? "");
   }
-
-  console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-  console.log(result);
-  console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 
   return result;
 };

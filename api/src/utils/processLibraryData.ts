@@ -17,6 +17,7 @@ export const processLibraryData = (
       songs.push({
         songId: filteredSongs[j]?.songId ?? -1,
         songDriveId: filteredSongs[j]?.songDriveId ?? "",
+        songFile: filteredSongs[j]?.songFile ?? "",
         songName: filteredSongs[j]?.songName ?? "",
         songArtist: filteredSongs[j]?.songArtist ?? "",
         songUrl: filteredSongs[j]?.songUrl ?? "",

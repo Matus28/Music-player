@@ -3,8 +3,8 @@ import { Song, song } from "../schema/song";
 
 export const filterSongs = async (
   songList: SongDriveData[]
-): Promise<SongDriveData[]> => {
-  let result: SongDriveData[] = [];
+): Promise<FilteredResult> => {
+  let result: FilteredResult = { toAdd: [], toUpdate: [] };
   let songsFromDB: Song[] = [];
 
   try {
@@ -15,14 +15,43 @@ export const filterSongs = async (
   }
 
   if (songsFromDB.length === 0) {
-    return songList;
+    return { toAdd: songList, toUpdate: [] };
   }
-  result = songList.filter((song: SongDriveData) => {
-    for (let i: number = 0; i < songsFromDB.length; i++) {
-      if (song.id === songsFromDB[i]?.songDriveId) return false;
-      if (i === songsFromDB.length - 1) return true;
+
+  result = compareSongs(songsFromDB, songList);
+
+  return result;
+};
+
+const compareSongs = (
+  songsFromDB: Song[],
+  songsFromDrive: SongDriveData[]
+): FilteredResult => {
+  const result: FilteredResult = {
+    toAdd: [],
+    toUpdate: [],
+  };
+
+  for (const songFromDrive of songsFromDrive) {
+    const matchingSong = songsFromDB.find((songFromDB) => {
+      if (songFromDrive.name === songFromDB.songFile) {
+        if (
+          songFromDrive.id !== songFromDB.songDriveId ||
+          songFromDrive.url !== songFromDB.songUrl ||
+          songFromDrive.cover !== songFromDB.songCover
+        ) {
+          result.toUpdate.push(songFromDrive);
+        }
+        return songFromDB;
+      }
+    });
+
+    if (matchingSong) {
+      continue;
     }
-  });
+
+    result.toAdd.push(songFromDrive);
+  }
 
   return result;
 };
