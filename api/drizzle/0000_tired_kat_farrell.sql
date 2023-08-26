@@ -14,6 +14,7 @@ CREATE TABLE `playlist` (
 CREATE TABLE `song` (
 	`song_id` int AUTO_INCREMENT PRIMARY KEY NOT NULL,
 	`song_drive_id` text,
+	`song_file` text,
 	`song_name` text,
 	`song_artist` text,
 	`song_url` text,

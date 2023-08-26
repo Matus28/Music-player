@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "mysql",
-  "id": "ccd6b653-2fee-4ac8-aa3c-f63076938468",
+  "id": "82ba8baa-0cba-47fb-a088-60f8a13063ba",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "assignedSong": {
@@ -111,6 +111,13 @@
         },
         "song_drive_id": {
           "name": "song_drive_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "song_file": {
+          "name": "song_file",
           "type": "text",
           "primaryKey": false,
           "notNull": false,
