@@ -5,6 +5,7 @@ import { assignedSong } from "./assignedSong";
 export const song = mysqlTable("song", {
   songId: int("song_id").autoincrement().primaryKey(),
   songDriveId: text("song_drive_id"),
+  songFile: text("song_file"),
   songName: text("song_name"),
   songArtist: text("song_artist"),
   songUrl: text("song_url"),
