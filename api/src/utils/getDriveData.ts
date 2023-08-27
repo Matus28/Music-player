@@ -13,7 +13,11 @@ type fetchedData = {
 
 export const getDriveData = async () => {
   const auth = new GoogleAuth({
-    keyFile: process.env.CREDENTIAL_PATH,
+    credentials: {
+      client_id: process.env.GOOGLE_CLIENT_ID,
+      client_email: process.env.GOOGLE_CLIENT_EMAIL,
+      private_key: process.env.GOOGLE_PRIVATE_KEY,
+    },
     scopes: ["https://www.googleapis.com/auth/drive"],
   });
 
