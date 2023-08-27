@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.ts",
-    "build": "rimraf dist && tsc --project tsconfig.json",
+    "build": "rimraf dist && tsc",
+    "ts.check": "tsc --project tsconfig.json",
+    "add-build": "git add dist",
     "lint": "eslint --ignore-path .eslintignore --ext .js,.ts .",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
     "migration:generate": "drizzle-kit generate:mysql --schema=./src/schema/*",
@@ -13,6 +15,11 @@
     "db:push": "drizzle-kit push:mysql",
     "migration:drop": "drizzle-kit drop --config=drizzle.config.ts"
   },
+  "pre-commit": [
+    "ts.check",
+    "build",
+    "add-build"
+  ],
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -46,6 +53,7 @@
     "esbuild-register": "^3.4.2",
     "eslint": "^8.44.0",
     "nodemon": "^2.0.22",
+    "pre-commit": "^1.2.2",
     "rimraf": "^5.0.1",
     "typescript": "^5.1.3"
   }

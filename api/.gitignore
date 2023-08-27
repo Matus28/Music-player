@@ -25,4 +25,5 @@ dist
 *.env
 
 .env.backup
+package-origin.json
 credentials.json
