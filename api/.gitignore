@@ -25,4 +25,3 @@ dist
 *.env
 
 credentials.json
-vercel.json
