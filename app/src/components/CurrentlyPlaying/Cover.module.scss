@@ -1,8 +1,16 @@
+@use "../../style/style" as *;
+
 .cover {
+  height: 200px;
+  position: absolute;
+  bottom: -26px;
+  border: 0.5rem solid $global__main-background;
+  border-radius: 0.8rem;
+  border-top-right-radius: 0;
+  background-color: $global__main-background;
+  right: 0px;
   img {
-    height: 200px;
-    position: absolute;
-    bottom: -26px;
-    right: 10px;
+    height: 100%;
+    border-radius: 0.8rem;
   }
 }

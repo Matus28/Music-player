@@ -1,10 +1,10 @@
 import { Playlist, Song } from "../../utils/types";
 import { Cover } from "./Cover";
 import GradeIcon from "@mui/icons-material/Grade";
-import "./CurrentlyPlaying.css";
 import { AddSongForm } from "../Dialogs/AddSongForm";
 import { useAssignSong } from "../../hooks/useAssignSong";
 import { useAuthContext } from "../../hooks/useAuthContext";
+import styles from "./CurrentlyPlaying.module.scss";
 
 export const CurrentlyPlaying = (props: {
   currentSong: Song | null;
@@ -25,22 +25,22 @@ export const CurrentlyPlaying = (props: {
   };
 
   return (
-    <div className="currently-playing">
-      <div className="currently-playing-image">
+    <div className={styles.wrapper}>
+      <div className={styles.image}>
         <Cover path={props.currentSong?.songCover} />
       </div>
-      <div className="currently-playing-info">
+      <div className={styles.info}>
         <h3>{props.currentSong ? props.currentSong.songName : ""}</h3>
         <span>{props.currentSong ? props.currentSong.songArtist : ""}</span>
       </div>
       {props.currentSong && (
-        <div className="currently-playing-playlist__control">
+        <div className={styles.controls}>
           <AddSongForm
             currentSong={props.currentSong}
             playlists={props.playlists}
           />
           <GradeIcon
-            className="currently-playing__favorite"
+            className={styles.favorite}
             sx={{ color: "#646464", "&:hover": { color: "#222222" } }}
             onClick={handleAddToFavorites}
           />
