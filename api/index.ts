@@ -2,11 +2,11 @@ import express, { NextFunction, Request, Response } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 // import { db } from "./database/connection";
-import { router as songRoutes } from "./routes/songs";
-import { router as playlistRoutes } from "./routes/playlists";
-import { router as libraryRoutes } from "./routes/library";
-import { router as userRoutes } from "./routes/users";
-import { updateDatabase } from "./utils/service";
+import { router as songRoutes } from "./src/routes/songs";
+import { router as playlistRoutes } from "./src/routes/playlists";
+import { router as libraryRoutes } from "./src/routes/library";
+import { router as userRoutes } from "./src/routes/users";
+import { updateDatabase } from "./src/utils/service";
 import { ToadScheduler, SimpleIntervalJob, AsyncTask } from "toad-scheduler";
 
 dotenv.config();

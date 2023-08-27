@@ -2,9 +2,9 @@
   "name": "exp-next",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
+  "main": "index.js",
   "scripts": {
-    "start": "nodemon src/index.ts",
+    "start": "nodemon index.ts",
     "build": "rimraf dist && tsc --project tsconfig.json",
     "lint": "eslint --ignore-path .eslintignore --ext .js,.ts .",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
