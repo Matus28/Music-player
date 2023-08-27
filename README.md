@@ -1,6 +1,6 @@
 # Music player - Web application
 
-## Status - In Progress
+## Status - NOT FINISHED -> In Progress
 The Music Player app is currently in active development, and work is ongoing to bring its features to life. While the application is not yet finalized, I'm dedicated to refining and enhancing its functionality. Stay tuned for updates and improvements as we work towards delivering an exceptional music experience.
 
 ## Description
