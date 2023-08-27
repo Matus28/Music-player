@@ -1,13 +1,19 @@
-@use "./style/style" as global;
+@use "./style/style" as *;
 @import url("https://fonts.googleapis.com/css2?family=Fugaz+One&family=Neucha&family=Ubuntu:wght@300&display=swap");
 
 * {
   font-family: "Ubuntu", sans-serif;
+  // letter-spacing: 1px;
   margin: 0;
   padding: 0;
-  color: global.$global__text;
+  color: $global__text;
+  box-sizing: border-box;
 }
 
 .body {
   font-size: 15px;
+}
+
+.App {
+  background-color: $global__main-background;
 }
