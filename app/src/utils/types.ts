@@ -7,6 +7,7 @@ export type Playlist = {
 
 export type Song = {
   songId: number;
+  songFile: string;
   songName: string;
   songArtist: string;
   songUrl: string;
