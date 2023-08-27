@@ -1,5 +1,6 @@
 {
   "version": 2,
+  "outputDirectory": "api/dist",
   "builds": [
     {
       "src": "dist/index.js",
@@ -7,10 +8,10 @@
       "config": { "includeFiles": ["dist/**"] }
     }
   ],
-  "rewrites": [
+  "routes": [
     {
-      "source": "/(.*)",
-      "destination": "dist/index.js"
+      "src": "/(.*)",
+      "dest": "dist/index.js"
     }
   ]
 }
