@@ -35,7 +35,6 @@ export const useSignup = () => {
       } catch (error: unknown) {
         if (axios.isAxiosError(error)) {
           console.log(error.response?.data);
-          console.log("wiiiiiiiiiiiiiiiiiiiiii");
           throw new Error(error.response?.data.message);
         }
         if (error instanceof Error) {
@@ -49,8 +48,8 @@ export const useSignup = () => {
     },
     onSuccess: (data) => {
       if (data) {
-        localStorage.setItem("user", JSON.stringify(data));
-        dispatch({ type: UserActionType.LOGIN, payload: data });
+        // localStorage.setItem("user", JSON.stringify(data));
+        // dispatch({ type: UserActionType.LOGIN, payload: data });
         showSnackBar("Account created.", "info");
       }
     },

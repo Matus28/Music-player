@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useNavigate } from "react-router-dom";
 import { BlueStyledButton } from "../components/Button/CustomizedButton";
 import { Card } from "../components/Card/Card";
 import { CustomizedTextField } from "../components/Input/CustomizedTextField";
@@ -17,6 +18,8 @@ const Signup = (): JSX.Element => {
   const [isNotSame, setIsNotSame] = React.useState<boolean | null>(null);
   const { error, isLoading, mutateAsync: signup } = useSignup();
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -27,6 +30,8 @@ const Signup = (): JSX.Element => {
     setIsNotSame(false);
 
     await signup({ username, email, password });
+
+    navigate("/");
   };
 
   return (
