@@ -2,7 +2,8 @@ import * as React from "react";
 import { EditMenu } from "../Menu/EditMenu";
 import { ConfirmDialog } from "../Dialogs/ConfirmDialog";
 import { OptionButton } from "../Button/OptionButton";
-import "./TrackItem.css";
+import styles from "./TrackItem.module.scss";
+import { PlayingIcon } from "../PlayingIcon/PlayingIcon";
 
 export const TrackItem = (props: {
   index: number;
@@ -19,7 +20,6 @@ export const TrackItem = (props: {
   const [openConfirmDialog, setOpenConfirmDialog] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
-  const status = props.isActive ? "active" : "";
   const open = Boolean(anchorEl);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -43,18 +43,21 @@ export const TrackItem = (props: {
 
   return (
     <li>
-      <div className="track-item">
+      <div className={styles.wrapper}>
         <div
-          className={`track-item-info ${status}`}
+          className={`${styles.info} ${props.isActive && styles.active}`}
           onClick={() => {
             props.onItemClick();
           }}
         >
-          <div className="track-item__index">{props.index}</div>
-          <div className="track-item__title">{`${props.title} (${props.interpret})`}</div>
-          <div className="track-item__length">{props.songLength}</div>
+          <PlayingIcon active={props.isActive ?? false} />
+          <div className={styles.index}>{props.index}</div>
+          <div
+            className={styles.title}
+          >{`${props.title} (${props.interpret})`}</div>
+          <div className={styles.duration}>{props.songLength}</div>
         </div>
-        <div className="track-item-menu">
+        <div className={styles.menu}>
           <OptionButton isOpen={open} handleClick={handleClick} />
           <EditMenu
             anchorEl={anchorEl}

@@ -1,0 +1,40 @@
+@use "../../style/style" as *;
+
+.list {
+  list-style: none;
+  max-height: 350px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 98%;
+  margin: 0;
+  margin-left: 0.6rem;
+  padding: 0rem;
+  border-top-left-radius: 0.3rem;
+  border-top-right-radius: 0.3rem;
+  background-color: $global__main-background;
+  filter: drop-shadow(0 0px 5px rgba(0, 0, 0, 0.3));
+  &::-webkit-scrollbar {
+    width: 10px;
+    left: -100px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(48, 48, 48, 0.397);
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgb(110, 110, 110);
+  }
+  li {
+    background-color: inherit;
+    padding-left: 0.5rem;
+    &:nth-child(odd) {
+      background: #ececec;
+    }
+    &:hover {
+      filter: saturate(2);
+    }
+  }
+}

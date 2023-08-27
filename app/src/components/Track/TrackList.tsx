@@ -1,6 +1,6 @@
 import { Song } from "../../utils/types";
 import { TrackItem } from "./TrackItem";
-import "./TrackList.css";
+import styles from "./TrackList.module.scss";
 
 export const TrackList = (props: {
   data: Song[];
@@ -11,7 +11,7 @@ export const TrackList = (props: {
   onRemoveSong: (formData: { songId: number }) => void;
 }): JSX.Element => {
   return (
-    <ul className="track-list">
+    <ul className={styles.list}>
       {props.data &&
         props.data.map((song: Song, index: number) => (
           <TrackItem
