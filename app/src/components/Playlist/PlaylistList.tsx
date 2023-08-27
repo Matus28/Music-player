@@ -1,7 +1,7 @@
 import { Playlist } from "../../utils/types";
 import { PlaylistItem } from "./PlaylistItem";
-import "./PlaylistList.css";
 import { AddPlaylistForm } from "../Dialogs/AddPlaylistForm";
+import styles from "./PlaylistList.module.scss";
 
 export const PlaylistList = (props: {
   playlists: Playlist[];
@@ -9,12 +9,12 @@ export const PlaylistList = (props: {
   onSelect: (id: number) => void;
 }): JSX.Element => {
   return (
-    <div className="playlist-list">
-      <div className="playlist-list-header">
+    <div className={styles.wrapper}>
+      <div className={styles.header}>
         <h2>Playlists</h2>
         <AddPlaylistForm playlists={props.playlists} />
       </div>
-      <ul className="playlist-list">
+      <ul>
         {props.playlists &&
           props.playlists.map((playlist: Playlist) => (
             <PlaylistItem

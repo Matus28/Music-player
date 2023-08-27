@@ -1,0 +1,58 @@
+.header {
+  width: 100%;
+  height: 27px;
+  position: relative;
+  h2 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 0 5.5rem 0 1.5rem;
+  }
+}
+
+.add {
+  position: absolute;
+  bottom: 0;
+  right: 200px;
+  height: 2rem;
+  width: 2rem;
+  margin-right: 0.6rem;
+  margin-bottom: 0.3rem;
+}
+
+.wrapper {
+  height: 250px;
+  ul {
+    list-style: none;
+    max-height: 89%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    background-color: inherit;
+    padding-left: 1.5rem;
+  }
+  li:nth-child(odd) {
+    background: #ececec;
+  }
+  ul::-webkit-scrollbar {
+    width: 10px;
+    left: -100px;
+  }
+
+  ul::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ul::-webkit-scrollbar-thumb {
+    background: rgba(110, 110, 110, 0.514);
+    border-radius: 10px;
+  }
+
+  ul::-webkit-scrollbar-thumb:hover {
+    background: rgb(110, 110, 110);
+  }
+}
