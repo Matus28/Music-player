@@ -24,4 +24,5 @@ dist
 *.sw?
 *.env
 
+.env.backup
 credentials.json

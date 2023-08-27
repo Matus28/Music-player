@@ -10,13 +10,14 @@ const runMigrate = async () => {
     throw new Error("DATABASE is not defined!");
   }
 
-  const poolConnection = mysql.createPool({
-    host: process.env.HOST,
-    user: process.env.DBUSERNAME,
-    password: process.env.PASSWORD,
-    database: process.env.DATABASE,
-    multipleStatements: true,
-  });
+  // const poolConnection = mysql.createPool({
+  //   host: process.env.HOST,
+  //   user: process.env.DBUSERNAME,
+  //   password: process.env.PASSWORD,
+  //   database: process.env.DATABASE,
+  //   multipleStatements: true,
+  // });
+  const poolConnection = mysql.createPool(process.env.DATABASE_URL ?? "");
 
   const db = drizzle(poolConnection);
 

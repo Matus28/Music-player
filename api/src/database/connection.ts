@@ -5,11 +5,13 @@ import { MySql2Database } from "drizzle-orm/mysql2";
 
 dotenv.config();
 
-const connection = mysql.createPool({
-  host: process.env.HOST,
-  user: process.env.DBUSERNAME,
-  password: process.env.PASSWORD,
-  database: process.env.DATABASE,
-});
+const connection = mysql.createPool(process.env.DATABASE_URL ?? "");
+
+// const connection = mysql.createPool({
+//   host: process.env.HOST,
+//   user: process.env.DBUSERNAME,
+//   password: process.env.PASSWORD,
+//   database: process.env.DATABASE,
+// });
 
 export const db: MySql2Database<Record<string, never>> = drizzle(connection);
