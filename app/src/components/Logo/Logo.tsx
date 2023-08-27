@@ -1,4 +1,5 @@
 import styles from "./Logo.module.scss";
+import Banner from "../../../public/img/banner.png";
 
 type LogoProps = {
   size: "small" | "regular";
@@ -6,10 +7,7 @@ type LogoProps = {
 
 const Logo = ({ size }: LogoProps): JSX.Element => {
   const Image = (
-    <img
-      src="../../../public/img/banner.png"
-      alt="Logo of music player web application."
-    />
+    <img src={Banner} alt="Logo of music player web application." />
   );
   return (
     <div className={styles.wrapper}>
