@@ -1,0 +1,53 @@
+.icon {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 13px;
+  height: 13px;
+  margin-right: 0.7rem;
+  visibility: hidden;
+
+  span {
+    content: "";
+    width: 3px;
+    height: 100%;
+    background-color: #25934d;
+    border-radius: 3px;
+    transform-origin: bottom;
+    animation: bounce 2.2s ease infinite alternate;
+
+    &:nth-of-type(2) {
+      animation-delay: -2.2s;
+    }
+
+    &:nth-of-type(3) {
+      animation-delay: -2.2s;
+    }
+  }
+}
+
+.active {
+  visibility: visible;
+}
+
+@keyframes bounce {
+  10% {
+    transform: scaleY(0.3);
+  }
+
+  30% {
+    transform: scaleY(1);
+  }
+
+  60% {
+    transform: scaleY(0.5);
+  }
+
+  80% {
+    transform: scaleY(0.75);
+  }
+
+  100% {
+    transform: scaleY(0.6);
+  }
+}
