@@ -1,6 +1,6 @@
 import * as React from "react";
-import { playlistData } from "../mockdata/playlists";
-import { Playlist, Song } from "../utils/types";
+// import { playlistData } from "../mockdata/playlists";
+// import { Playlist, Song } from "../utils/types";
 
 // export type PlaylistsContextType = {
 //   playlists: Playlist[];
