@@ -6,12 +6,7 @@
   "scripts": {
     "start": "nodemon index.ts",
     "build": "rimraf dist && tsc --project tsconfig.json",
-    "lint": "eslint --ignore-path .eslintignore --ext .js,.ts .",
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
-    "migration:generate": "drizzle-kit generate:mysql --schema=./src/schema/*",
-    "migration:push": "node -r esbuild-register src/db/migrate.ts",
-    "db:push": "drizzle-kit push:mysql",
-    "migration:drop": "drizzle-kit drop --config=drizzle.config.ts"
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\""
   },
   "keywords": [],
   "author": "",
