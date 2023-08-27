@@ -11,7 +11,7 @@ import styles from "./Login.module.scss";
 
 const Login = (): JSX.Element => {
   const [email, setEmail] = React.useState<string>("matus28@gmail.com");
-  const [password, setPassword] = React.useState<string>("ABCabc123!");
+  const [password, setPassword] = React.useState<string>("ABCabc123@");
   const { error, isLoading, mutateAsync: login } = useLogin();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {

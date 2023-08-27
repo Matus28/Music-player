@@ -19,7 +19,6 @@ const Home = (): JSX.Element => {
   const { state: userValue } = useAuthContext();
 
   const [playlists, setPlaylists] = React.useState<Playlist[]>([]);
-  // const [trackList, setTracklist] = React.useState<Song[]>([]);
   const [currentPlaylist, setCurrentPlaylist] = React.useState<Playlist | null>(
     null
   );
@@ -137,7 +136,7 @@ const Home = (): JSX.Element => {
   return (
     <Container>
       <NavBar />
-      <div className={styles.container}>
+      <div className={styles.wrapper}>
         <div className={styles.musicPlayer}>
           <div className={styles.leftPanel}>
             <Logo size="regular" />
