@@ -30,6 +30,7 @@ const Home = (): JSX.Element => {
   const [isShuffle, setIsShuffle] = React.useState<boolean>(false);
   const [tracksOrder, setTracksOrder] = React.useState<number[]>([]);
   const [triggerEnd, setTriggerEnd] = React.useState<boolean>(false);
+  const [isPlaying, setIsPlaying] = React.useState<boolean>(false);
 
   const musicPlayer = React.useRef<HTMLAudioElement | null>(null);
 
@@ -133,6 +134,10 @@ const Home = (): JSX.Element => {
     setIsShuffle((prev: boolean) => !prev);
   };
 
+  const handleToggleIsPlaying = (): void => {
+    setIsPlaying((prev: boolean) => !prev);
+  };
+
   return (
     <Container>
       <NavBar />
@@ -153,6 +158,7 @@ const Home = (): JSX.Element => {
               playlistTitle={currentPlaylist?.playlistName ?? ""}
               playlistId={currentPlaylist?.playlistId ?? -1}
               selectedSong={currentSong}
+              isPlaying={isPlaying}
               onSelect={handleSelectSong}
               onRemoveSong={handleRemoveSong}
             />
@@ -167,6 +173,7 @@ const Home = (): JSX.Element => {
               duration={duration}
               position={position}
               isShuffle={isShuffle}
+              isPlaying={isPlaying}
               onSetSongIndex={setSongIndex}
               onSetCurrentSong={setCurrentSong}
               onSetTriggerEnd={setTriggerEnd}
@@ -174,6 +181,7 @@ const Home = (): JSX.Element => {
               onSetPosition={setPosition}
               onHandleNext={handleNext}
               onShuffleHandle={handleToggleShuffle}
+              onSetIsPlaying={handleToggleIsPlaying}
             />
           </div>
         </div>
