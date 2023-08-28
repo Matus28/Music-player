@@ -1,0 +1,45 @@
+.add {
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  svg {
+    transform: scale(1.2);
+  }
+}
+
+#form {
+  width: 300px;
+  padding: 25px 0;
+}
+
+.name {
+  label {
+    font-size: 17px;
+    letter-spacing: 2px;
+  }
+
+  input {
+    padding: 20px 10px 5px;
+  }
+}
+
+.playlist-form-buttons {
+  align-items: center;
+}
+
+.playlist-form-name__autocompleteinput > input {
+  margin: 10px 0px 0px 0px;
+}
+
+.playlist-select-autocomplete {
+  max-height: 50px;
+  overflow: hidden;
+}
+
+.error {
+  padding: 10px;
+  background: #ffefef;
+  border: 1px solid #ff5f5f;
+  color: #ff5f5f;
+  border-radius: 4px;
+  margin: 20px 0;
+}

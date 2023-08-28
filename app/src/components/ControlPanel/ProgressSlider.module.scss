@@ -1,0 +1,10 @@
+.seekbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.slider {
+  cursor: pointer;
+}

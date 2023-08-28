@@ -1,11 +1,23 @@
-.shuffle-btn {
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  scale: 1.2;
+}
+
+.button {
   display: flex;
   flex-flow: column;
   justify-content: center;
   align-items: center;
+
+  svg {
+    cursor: pointer;
+  }
 }
 
-.shuffle-btn.active {
+.active {
   filter: invert(57%) sepia(60%) saturate(329%) hue-rotate(91deg)
     brightness(94%) contrast(91%);
 }

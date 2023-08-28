@@ -1,0 +1,11 @@
+.playback {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  scale: 1.2;
+
+  svg {
+    cursor: pointer;
+  }
+}

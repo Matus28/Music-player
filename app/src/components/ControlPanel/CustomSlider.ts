@@ -14,7 +14,7 @@ export const PositionSlider = styled(Slider)<SliderProps>(({ theme }) => ({
       height: 24,
       width: 24,
       boxShadow: "inherit",
-      cursor: "auto",
+      cursor: "pointer",
     },
     "&:focus, &.Mui-active, &.Mui-focusVisible": {
       boxShadow: "inherit",
@@ -39,7 +39,7 @@ export const VolumeSlider = styled(Slider)<SliderProps>(({ theme }) => ({
       height: 24,
       width: 24,
       boxShadow: "inherit",
-      cursor: "auto",
+      cursor: "pointer",
     },
     "&:focus, &.Mui-active, &.Mui-focusVisible": {
       boxShadow: "inherit",

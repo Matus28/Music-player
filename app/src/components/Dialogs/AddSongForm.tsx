@@ -6,7 +6,7 @@ import { PlaylistAutocomplete } from "../Autocomplete/PlaylistAutocomplete";
 import { Playlist, Song } from "../../utils/types";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useAssignSong } from "../../hooks/useAssignSong";
-import "./AddPlaylistForm.css";
+import styles from "./AddSongForm.module.scss";
 
 export const AddSongForm = (props: {
   currentSong: Song;
@@ -65,7 +65,7 @@ export const AddSongForm = (props: {
   };
 
   return (
-    <div>
+    <div className={styles.add}>
       <AddIcon
         className="currently-playing__add"
         sx={{ color: "#646464", "&:hover": { color: "#222222" } }}
@@ -74,7 +74,7 @@ export const AddSongForm = (props: {
       <Dialog open={open} onClose={handleCloseDialog}>
         <CustomizedDialogTitle>Add to playlist</CustomizedDialogTitle>
         <DialogContent>
-          <form id="playlist-form" onSubmit={onSubmitHandler}>
+          <form id={styles.form} onSubmit={onSubmitHandler}>
             <label htmlFor="playlist-name">Playlist name</label>
             <PlaylistAutocomplete
               onSelectChange={handleSelectedPlaylist}

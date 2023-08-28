@@ -4,8 +4,7 @@ import { LoadTrack } from "./LoadTrack";
 import { ProgressSlider } from "./ProgressSlider";
 import { Shuffle } from "./Shuffle";
 import { VolumeControls } from "./VolumeControls";
-
-import "./ControlPanel.css";
+import styles from "./ControlPanel.module.scss";
 
 interface ControlPanelProps {
   musicPlayer: React.MutableRefObject<HTMLAudioElement | null>;
@@ -16,6 +15,7 @@ interface ControlPanelProps {
   duration: number;
   position: number;
   isShuffle: boolean;
+  isPlaying: boolean;
   onSetSongIndex: (newValue: number) => void;
   onSetCurrentSong: (newValue: Song) => void;
   onSetTriggerEnd: (newValue: boolean) => void;
@@ -23,11 +23,12 @@ interface ControlPanelProps {
   onSetDuration: (newValue: number) => void;
   onHandleNext: () => void;
   onShuffleHandle: () => void;
+  onSetIsPlaying: () => void;
 }
 
 export const ControlPanel = (props: ControlPanelProps): JSX.Element => {
   return (
-    <div className="control-panel">
+    <div className={styles.wrapper}>
       <LoadTrack
         currentSong={props.currentSong}
         musicPlayer={props.musicPlayer}
@@ -41,11 +42,13 @@ export const ControlPanel = (props: ControlPanelProps): JSX.Element => {
         onSetPosition={props.onSetPosition}
         currentTrackList={props.currentTrackList ?? []}
         songIndex={props.songIndex}
+        isPlaying={props.isPlaying}
         onSetSongIndex={props.onSetSongIndex}
         onSetCurrentSong={props.onSetCurrentSong}
         onHandleNext={props.onHandleNext}
         ended={props.ended}
         onSetTriggerEnd={props.onSetTriggerEnd}
+        onSetIsPlaying={props.onSetIsPlaying}
       />
       <ProgressSlider
         musicPlayer={props.musicPlayer}

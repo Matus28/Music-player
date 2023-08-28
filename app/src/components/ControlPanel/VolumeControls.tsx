@@ -1,6 +1,7 @@
 import * as React from "react";
 import { VolumeSlider } from "./CustomSlider";
 import { VolumeButtons } from "./VolumeButtons";
+import styles from "./VolumeControls.module.scss";
 
 export const VolumeControls = (props: {
   musicPlayer: React.MutableRefObject<HTMLAudioElement | null>;
@@ -24,7 +25,7 @@ export const VolumeControls = (props: {
   };
 
   return (
-    <div className="control-panel-volume">
+    <div className={styles.wrapper}>
       <VolumeButtons volume={volume} isMuted={mute} onMute={handleOnMute} />
       <VolumeSlider
         valueLabelDisplay="off"

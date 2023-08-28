@@ -1,15 +1,24 @@
-#playlist-form {
+.add {
+  cursor: pointer;
+  svg {
+    transform: scale(1.2);
+  }
+}
+
+#form {
   width: 300px;
   padding: 25px 0;
 }
 
-.playlist-form-name label {
-  font-size: 17px;
-  letter-spacing: 2px;
-}
+.name {
+  label {
+    font-size: 17px;
+    letter-spacing: 2px;
+  }
 
-.playlist-form-name input {
-  padding: 20px 10px 5px;
+  input {
+    padding: 20px 10px 5px;
+  }
 }
 
 .playlist-form-buttons {
@@ -25,7 +34,7 @@
   overflow: hidden;
 }
 
-div.error {
+.error {
   padding: 10px;
   background: #ffefef;
   border: 1px solid #ff5f5f;

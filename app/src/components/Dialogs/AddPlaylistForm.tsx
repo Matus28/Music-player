@@ -9,9 +9,9 @@ import {
 } from "@mui/material";
 import { CustomizedDialogTitle } from "./CustomizedDialogComponents";
 import { Playlist } from "../../utils/types";
-import "./AddPlaylistForm.css";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { usePostPlaylist } from "../../hooks/usePostPlaylist";
+import styles from "./AddPlaylistForm.module.scss";
 
 export const AddPlaylistForm = (props: {
   playlists: Playlist[];
@@ -73,7 +73,7 @@ export const AddPlaylistForm = (props: {
   };
 
   return (
-    <div>
+    <div className={styles.add}>
       <AddIcon
         sx={{ color: "#646464", "&:hover": { color: "#222222" } }}
         className="playlist-list-header__add"
@@ -82,10 +82,10 @@ export const AddPlaylistForm = (props: {
       <Dialog open={open} onClose={handleCloseDialog}>
         <CustomizedDialogTitle>Create Playlist</CustomizedDialogTitle>
         <DialogContent>
-          <form id="playlist-form" onSubmit={submitHandler}>
+          <form id={styles.form} onSubmit={submitHandler}>
             <label htmlFor="playlist-name">Playlist name</label>
             <TextField
-              className="playlist-form-name"
+              className={styles.name}
               variant="outlined"
               fullWidth={true}
               name="playlist-name"
@@ -94,16 +94,18 @@ export const AddPlaylistForm = (props: {
               autoFocus
               required
             />
-            {error ? <div className="error">{`${error}`}</div> : <div></div>}
+            {error ? (
+              <div className={styles.error}>{`${error}`}</div>
+            ) : (
+              <div></div>
+            )}
           </form>
         </DialogContent>
         <DialogActions>
           <Button variant="text" onClick={handleCloseDialog}>
             Cancel
           </Button>
-          <Button variant="text" type="submit" form="playlist-form">
-            Create
-          </Button>
+          <Button variant="text">Create</Button>
         </DialogActions>
       </Dialog>
     </div>

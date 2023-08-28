@@ -2,7 +2,7 @@ import * as React from "react";
 import { Typography } from "@mui/material";
 import { formatDuration } from "../../utils/formatDuration";
 import { PositionSlider } from "./CustomSlider";
-
+import styles from "./ProgressSlider.module.scss";
 interface ProgressSlider {
   musicPlayer: React.MutableRefObject<HTMLAudioElement | null>;
   duration: number;
@@ -25,11 +25,12 @@ export const ProgressSlider = (props: ProgressSlider): JSX.Element => {
   };
 
   return (
-    <div className="control-panel-seekbar">
+    <div className={styles.seekbar}>
       <Typography sx={{ color: "#646464" }}>
         {formatDuration(Math.floor(props.position))}
       </Typography>
       <PositionSlider
+        className={styles.slider}
         valueLabelDisplay="off"
         aria-label="continuous-slider"
         value={props.position}

@@ -1,6 +1,5 @@
 import ShuffleIcon from "@mui/icons-material/Shuffle";
-
-import "./Shuffle.css";
+import styles from "./Shuffle.module.scss";
 
 interface ShuffleProps {
   isShuffle: boolean;
@@ -9,12 +8,13 @@ interface ShuffleProps {
 
 export const Shuffle = (props: ShuffleProps): JSX.Element => {
   return (
-    <div className={`shuffle-btn ${props.isShuffle ? "active" : ""}`}>
-      <ShuffleIcon
-        sx={{ color: "#646464", "&:hover": { color: "#222222" } }}
-        className={props.isShuffle ? "active" : ""}
-        onClick={props.onClickHandle}
-      />
+    <div className={styles.wrapper}>
+      <div className={`${styles.button} ${props.isShuffle && styles.active}`}>
+        <ShuffleIcon
+          sx={{ color: "#646464", "&:hover": { color: "#222222" } }}
+          onClick={props.onClickHandle}
+        />
+      </div>
     </div>
   );
 };

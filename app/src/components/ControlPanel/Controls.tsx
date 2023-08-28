@@ -6,6 +6,7 @@ import SkipNextIcon from "@mui/icons-material/SkipNext";
 import FastForwardIcon from "@mui/icons-material/FastForward";
 import FastRewindIcon from "@mui/icons-material/FastRewind";
 import { Song } from "../../utils/types";
+import styles from "./Controls.module.scss";
 
 interface ControlsProps {
   musicPlayer: React.MutableRefObject<HTMLAudioElement | null>;
@@ -14,16 +15,16 @@ interface ControlsProps {
   ended: boolean;
   duration: number;
   position: number;
+  isPlaying: boolean;
   onSetSongIndex: (newValue: number) => void;
   onSetCurrentSong: (newValue: Song) => void;
   onSetTriggerEnd: (newValue: boolean) => void;
   onSetPosition: (newValue: number) => void;
   onHandleNext: () => void;
+  onSetIsPlaying: () => void;
 }
 
 export const Controls = (props: ControlsProps): JSX.Element => {
-  const [isPlaying, setIsPlaying] = React.useState<boolean>(false);
-
   const positionAnimation = React.useRef<number>();
 
   const repeat = React.useCallback((): void => {
@@ -36,17 +37,17 @@ export const Controls = (props: ControlsProps): JSX.Element => {
   }, [props.musicPlayer, props.duration]);
 
   React.useEffect(() => {
-    if (props.musicPlayer && isPlaying) {
+    if (props.musicPlayer && props.isPlaying) {
       props.musicPlayer.current?.play();
       positionAnimation.current = requestAnimationFrame(repeat);
-    } else if (props.musicPlayer && !isPlaying) {
+    } else if (props.musicPlayer && !props.isPlaying) {
       props.musicPlayer.current?.pause();
       cancelAnimationFrame(positionAnimation.current ?? 0);
     }
-  }, [props.musicPlayer, isPlaying, repeat]);
+  }, [props.musicPlayer, props.isPlaying, repeat]);
 
   React.useEffect(() => {
-    if (!isPlaying) {
+    if (!props.isPlaying) {
       handleTogglePlay();
     }
   }, [props.songIndex]);
@@ -59,14 +60,14 @@ export const Controls = (props: ControlsProps): JSX.Element => {
   }, [props.ended]);
 
   const handleTogglePlay = (): void => {
-    setIsPlaying((prev: boolean) => !prev);
+    props.onSetIsPlaying();
   };
 
   const handlePrevious = (): void => {
     let newIndex: number = props.songIndex;
     if (
-      !isPlaying ||
-      (isPlaying &&
+      !props.isPlaying ||
+      (props.isPlaying &&
         props.musicPlayer.current?.currentTime !== undefined &&
         props.musicPlayer.current?.currentTime < 5)
     ) {
@@ -78,7 +79,7 @@ export const Controls = (props: ControlsProps): JSX.Element => {
       ? (props.musicPlayer.current.src =
           props.currentTrackList[newIndex].songUrl)
       : null;
-    isPlaying ? props.musicPlayer.current?.play() : handleTogglePlay();
+    props.isPlaying ? props.musicPlayer.current?.play() : handleTogglePlay();
   };
 
   const handleOnRewind = (): void => {
@@ -94,7 +95,7 @@ export const Controls = (props: ControlsProps): JSX.Element => {
   };
 
   return (
-    <div className="control-panel-playback">
+    <div className={styles.playback}>
       <SkipPreviousIcon
         sx={{ color: "#646464", "&:hover": { color: "#222222" } }}
         onClick={handlePrevious}
@@ -104,7 +105,7 @@ export const Controls = (props: ControlsProps): JSX.Element => {
         onClick={handleOnRewind}
       />
 
-      {isPlaying ? (
+      {props.isPlaying ? (
         <PauseIcon
           sx={{ color: "#646464", "&:hover": { color: "#222222" } }}
           onClick={handleTogglePlay}
