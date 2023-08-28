@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Box, Slider, SliderProps, Stack } from "@mui/material";
+import { Slider, SliderProps, Stack } from "@mui/material";
 
 export const PositionSlider = styled(Slider)<SliderProps>(({ theme }) => ({
   color: "#52af77",
