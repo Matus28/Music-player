@@ -3,8 +3,8 @@ import { EditMenu } from "../Menu/EditMenu";
 import { EditPlaylistForm } from "../Dialogs/EditPlaylistForm";
 import { Playlist } from "../../utils/types";
 import { ConfirmDialog } from "../Dialogs/ConfirmDialog";
-import "./PlaylistItem.css";
 import { OptionButton } from "../Button/OptionButton";
+import styles from "./PlaylistItem.module.scss";
 
 export interface PlaylistItemProps {
   playlists: Playlist[];
@@ -45,9 +45,9 @@ export const PlaylistItem = (props: PlaylistItemProps): JSX.Element => {
 
   return (
     <li>
-      <div className="playlist-item">
+      <div className={styles.wrapper}>
         <div
-          className={`playlist-item__title ${status}`}
+          className={`${styles.title} ${status && styles.active}`}
           onClick={() => {
             props.onItemClick();
           }}
@@ -55,7 +55,7 @@ export const PlaylistItem = (props: PlaylistItemProps): JSX.Element => {
           {props.playlist.playlistName}
         </div>
         {props.playlist.playlistDeletable && (
-          <div className="playlist-item-menu">
+          <div className={styles.menu}>
             <OptionButton isOpen={open} handleClick={handleClick} />
             <EditMenu
               anchorEl={anchorEl}

@@ -1,4 +1,4 @@
-.playlist-item {
+.wrapper {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -6,11 +6,16 @@
   line-height: 2rem;
 }
 
-playlist-item-menu {
+.menu {
   margin-right: 0.8rem;
+
+  button {
+    max-width: 40px;
+    min-width: 40px;
+  }
 }
 
-.playlist-item__title {
+.title {
   cursor: pointer;
   max-width: 350px;
   max-height: 70px;
@@ -19,11 +24,6 @@ playlist-item-menu {
   white-space: nowrap;
 }
 
-.playlist-item__title.active {
+.active {
   font-weight: 800;
-}
-
-.playlist-item-menu button {
-  max-width: 40px;
-  min-width: 40px;
 }
