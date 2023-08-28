@@ -11,8 +11,7 @@
   padding: 0rem;
   border-top-left-radius: 0.3rem;
   border-top-right-radius: 0.3rem;
-  background-color: $global__main-background;
-  filter: drop-shadow(0 0px 5px rgba(0, 0, 0, 0.3));
+  background-color: inherit;
   &::-webkit-scrollbar {
     width: 10px;
     left: -100px;
@@ -29,7 +28,8 @@
   }
   li {
     background-color: inherit;
-    padding-left: 0.5rem;
+    width: 100%;
+    padding-left: 0.8rem;
     &:nth-child(odd) {
       background: #ececec;
     }

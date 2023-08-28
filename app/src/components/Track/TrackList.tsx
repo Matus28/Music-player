@@ -6,8 +6,9 @@ export const TrackList = (props: {
   data: Song[];
   playlistTitle: string;
   playlistId: number;
-  onSelect: (id: number) => void;
+  isPlaying: boolean;
   selectedSong: Song | null;
+  onSelect: (id: number) => void;
   onRemoveSong: (formData: { songId: number }) => void;
 }): JSX.Element => {
   return (
@@ -23,6 +24,7 @@ export const TrackList = (props: {
             interpret={song.songArtist}
             songLength={song.songLength}
             playlistTitle={props.playlistTitle}
+            isPlaying={props.isPlaying}
             isActive={
               props.selectedSong && props.selectedSong.songId === song.songId
             }

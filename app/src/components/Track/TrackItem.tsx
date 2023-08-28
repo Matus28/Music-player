@@ -13,6 +13,7 @@ export const TrackItem = (props: {
   interpret: string;
   songLength: string;
   playlistTitle: string;
+  isPlaying: boolean;
   isActive: boolean | null;
   onItemClick: () => void;
   onRemoveSong: (formData: { songId: number }) => void;
@@ -50,7 +51,7 @@ export const TrackItem = (props: {
             props.onItemClick();
           }}
         >
-          <PlayingIcon active={props.isActive ?? false} />
+          <PlayingIcon active={(props.isActive ?? false) && props.isPlaying} />
           <div className={styles.index}>{props.index}</div>
           <div
             className={styles.title}
