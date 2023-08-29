@@ -1,14 +1,15 @@
 .add {
   margin-bottom: 0.5rem;
   cursor: pointer;
+
   svg {
     transform: scale(1.2);
   }
-}
 
-#form {
-  width: 300px;
-  padding: 25px 0;
+  form {
+    width: 300px;
+    padding: 25px 0;
+  }
 }
 
 .name {

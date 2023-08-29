@@ -52,6 +52,7 @@ export const AddPlaylistForm = (props: {
 
   const submitHandler = (ev: React.FormEvent<HTMLFormElement>): void => {
     ev.preventDefault();
+    console.log("wiiiiiiiiiii");
 
     const inputPlaylistName = ev.currentTarget.elements.namedItem(
       "playlist-name"
@@ -82,7 +83,7 @@ export const AddPlaylistForm = (props: {
       <Dialog open={open} onClose={handleCloseDialog}>
         <CustomizedDialogTitle>Create Playlist</CustomizedDialogTitle>
         <DialogContent>
-          <form id={styles.form} onSubmit={submitHandler}>
+          <form id="playlist-form" onSubmit={submitHandler}>
             <label htmlFor="playlist-name">Playlist name</label>
             <TextField
               className={styles.name}
@@ -105,7 +106,9 @@ export const AddPlaylistForm = (props: {
           <Button variant="text" onClick={handleCloseDialog}>
             Cancel
           </Button>
-          <Button variant="text">Create</Button>
+          <Button variant="text" type="submit" form="playlist-form">
+            Create
+          </Button>
         </DialogActions>
       </Dialog>
     </div>

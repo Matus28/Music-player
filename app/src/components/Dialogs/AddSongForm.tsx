@@ -74,7 +74,7 @@ export const AddSongForm = (props: {
       <Dialog open={open} onClose={handleCloseDialog}>
         <CustomizedDialogTitle>Add to playlist</CustomizedDialogTitle>
         <DialogContent>
-          <form id={styles.form} onSubmit={onSubmitHandler}>
+          <form id="song-form" onSubmit={onSubmitHandler}>
             <label htmlFor="playlist-name">Playlist name</label>
             <PlaylistAutocomplete
               onSelectChange={handleSelectedPlaylist}
@@ -87,7 +87,7 @@ export const AddSongForm = (props: {
           <Button variant="text" onClick={handleCloseDialog}>
             Cancel
           </Button>
-          <Button variant="text" type="submit" form="playlist-form">
+          <Button variant="text" type="submit" form="song-form">
             Add
           </Button>
         </DialogActions>
