@@ -9,6 +9,7 @@ import styles from "./CurrentlyPlaying.module.scss";
 export const CurrentlyPlaying = (props: {
   currentSong: Song | null;
   playlists: Playlist[];
+  isFavorite: boolean;
 }): JSX.Element => {
   const { state: userValue } = useAuthContext();
 
@@ -34,14 +35,17 @@ export const CurrentlyPlaying = (props: {
         <span>{props.currentSong ? props.currentSong.songArtist : ""}</span>
       </div>
       {props.currentSong && (
-        <div className={styles.controls}>
+        <div
+          className={`${styles.controls} ${
+            props.isFavorite ? styles.active : ""
+          }`}
+        >
           <AddSongForm
             currentSong={props.currentSong}
             playlists={props.playlists}
           />
           <GradeIcon
             className={styles.favorite}
-            sx={{ color: "#646464", "&:hover": { color: "#222222" } }}
             onClick={handleAddToFavorites}
           />
         </div>

@@ -51,6 +51,21 @@
 .controls {
   height: 27px;
   display: flex;
+
+  svg {
+    transform: scale(1.2);
+    cursor: pointer;
+
+    path {
+      color: $global__inactive;
+    }
+    &:hover {
+      scale: 1.5;
+    }
+    &:hover path {
+      color: $global__text;
+    }
+  }
 }
 
 .add,
@@ -59,4 +74,13 @@
   width: 2rem;
   margin-left: 0.8rem;
   cursor: pointer;
+}
+
+.active {
+  .favorite {
+    path,
+    &:hover path {
+      color: $global__active-icon;
+    }
+  }
 }
