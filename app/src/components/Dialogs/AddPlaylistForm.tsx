@@ -76,7 +76,6 @@ export const AddPlaylistForm = (props: {
   return (
     <div className={styles.add}>
       <AddIcon
-        sx={{ color: "#646464", "&:hover": { color: "#222222" } }}
         className="playlist-list-header__add"
         onClick={handleOpenDialog}
       />

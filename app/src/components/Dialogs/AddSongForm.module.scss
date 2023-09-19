@@ -1,8 +1,21 @@
+@use "../../style/style" as *;
+
 .add {
   cursor: pointer;
 
   svg {
     transform: scale(1.2);
+    cursor: pointer;
+
+    path {
+      color: $global__inactive;
+    }
+    &:hover {
+      scale: 1.5;
+    }
+    &:hover path {
+      color: $global__text;
+    }
   }
 
   form {

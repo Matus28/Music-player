@@ -66,11 +66,7 @@ export const AddSongForm = (props: {
 
   return (
     <div className={styles.add}>
-      <AddIcon
-        className="currently-playing__add"
-        sx={{ color: "#646464", "&:hover": { color: "#222222" } }}
-        onClick={handleOpenDialog}
-      />
+      <AddIcon className="currently-playing__add" onClick={handleOpenDialog} />
       <Dialog open={open} onClose={handleCloseDialog}>
         <CustomizedDialogTitle>Add to playlist</CustomizedDialogTitle>
         <DialogContent>
