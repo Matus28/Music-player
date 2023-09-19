@@ -1,8 +1,8 @@
 import styles from "./PlayingIcon.module.scss";
 
-export const PlayingIcon = (props: { active: boolean }): JSX.Element => {
+export const PlayingIcon = (props: { playing: boolean }): JSX.Element => {
   return (
-    <div className={`${styles.icon} ${props.active && styles.active}`}>
+    <div className={`${styles.icon} ${props.playing && styles.playing}`}>
       <span />
       <span />
       <span />

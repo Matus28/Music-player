@@ -2,17 +2,23 @@
   position: relative;
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
   width: 13px;
   height: 13px;
   margin-right: 0.7rem;
-  visibility: hidden;
 
   span {
     content: "";
     width: 3px;
-    height: 100%;
+    height: 30%;
     background-color: #25934d;
     border-radius: 3px;
+  }
+}
+
+.playing {
+  span {
+    height: 100%;
     transform-origin: bottom;
     animation: bounce 2.2s ease infinite alternate;
 
@@ -24,10 +30,6 @@
       animation-delay: -2.2s;
     }
   }
-}
-
-.active {
-  visibility: visible;
 }
 
 @keyframes bounce {
