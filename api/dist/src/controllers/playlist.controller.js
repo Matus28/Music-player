@@ -127,5 +127,23 @@ exports.playlistController = {
             }
         }
     },
+    async removeFavoriteSong(req, res) {
+        const userId = req.user?.userId ?? -1;
+        const { songId } = req.body;
+        console.log("wuwuwuwuwuwuwwuwuwuwuwuwwwuwuwuwwuwuw");
+        try {
+            const result = await (0, playlist_service_1.removeFavoriteSongService)(userId, songId);
+            if (result && result[0].affectedRows === 1) {
+                res
+                    .status(200)
+                    .json({ message: "Song successfully remove from playlist!" });
+            }
+        }
+        catch (error) {
+            if (error instanceof Error) {
+                res.status(400).json({ message: error.message });
+            }
+        }
+    },
 };
 //# sourceMappingURL=playlist.controller.js.map

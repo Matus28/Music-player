@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.removeSongService = exports.assignFavoriteSongService = exports.assignSongService = exports.getAssignedSongsService = exports.removePlaylistService = exports.updatePlaylistService = exports.createPlaylistService = exports.getAllPlaylistsService = void 0;
+exports.removeFavoriteSongService = exports.removeSongService = exports.assignFavoriteSongService = exports.assignSongService = exports.getAssignedSongsService = exports.removePlaylistService = exports.updatePlaylistService = exports.createPlaylistService = exports.getAllPlaylistsService = void 0;
 const drizzle_orm_1 = require("drizzle-orm");
 const connection_1 = require("../database/connection");
 const playlist_1 = require("../schema/playlist");
@@ -348,4 +348,49 @@ const removeSongService = async (ownerId, playlistId, songId) => {
     }
 };
 exports.removeSongService = removeSongService;
+const removeFavoriteSongService = async (ownerId, songId) => {
+    console.log("wiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
+    let playlistExist = [];
+    try {
+        playlistExist = await connection_1.db
+            .select()
+            .from(playlist_1.playlist)
+            .where((0, drizzle_orm_1.and)((0, drizzle_orm_1.eq)(playlist_1.playlist.playlistOwner, ownerId), (0, drizzle_orm_1.eq)(playlist_1.playlist.playlistName, "Favorite")));
+    }
+    catch (error) {
+        if (error instanceof Error) {
+            console.log(error.message);
+        }
+    }
+    if (playlistExist.length === 0) {
+        throw new Error("Playlist with this ID does not exist!");
+    }
+    let assignedSongExist = [];
+    try {
+        assignedSongExist = await connection_1.db
+            .select()
+            .from(assignedSong_1.assignedSong)
+            .where((0, drizzle_orm_1.and)((0, drizzle_orm_1.eq)(assignedSong_1.assignedSong.playlistId, playlistExist[0]?.playlistId ?? -1), (0, drizzle_orm_1.eq)(assignedSong_1.assignedSong.songId, songId)));
+    }
+    catch (error) {
+        if (error instanceof Error) {
+            console.log(error.message);
+        }
+    }
+    if (assignedSongExist.length === 0) {
+        throw new Error("This song is not assigned to that playlist!");
+    }
+    try {
+        const result = await connection_1.db
+            .delete(assignedSong_1.assignedSong)
+            .where((0, drizzle_orm_1.and)((0, drizzle_orm_1.eq)(assignedSong_1.assignedSong.playlistId, playlistExist[0]?.playlistId ?? -1), (0, drizzle_orm_1.eq)(assignedSong_1.assignedSong.songId, songId)));
+        return result;
+    }
+    catch (error) {
+        if (error instanceof Error) {
+            console.log(error.message);
+        }
+    }
+};
+exports.removeFavoriteSongService = removeFavoriteSongService;
 //# sourceMappingURL=playlist.service.js.map

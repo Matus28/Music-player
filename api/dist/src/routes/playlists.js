@@ -17,4 +17,5 @@ exports.router.post("/favorite", playlist_controller_1.playlistController.assign
 exports.router.get("/:id/songs", playlist_controller_1.playlistController.getAssignedSongs);
 exports.router.post("/:id/songs", playlist_controller_1.playlistController.assignSong);
 exports.router.delete("/:id/songs", playlist_controller_1.playlistController.removeSong);
+exports.router.delete("/favorite", playlist_controller_1.playlistController.removeFavoriteSong);
 //# sourceMappingURL=playlists.js.map

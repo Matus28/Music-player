@@ -17,7 +17,7 @@ dotenv_1.default.config();
 // APP creating
 const app = (0, express_1.default)();
 // PORT
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 5000;
 // Middleware
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
