@@ -1,16 +1,18 @@
+import { Song } from "./types";
+
 export const setTrackListOrder = (
-  songsNumber: number,
+  trackList: Song[],
   isShuffle: boolean
-): number[] => {
-  let result: number[] = [...Array(songsNumber).keys()].map(
+): Song[] => {
+  let order: number[] = [...Array(trackList.length).keys()].map(
     (element) => element
   );
 
   if (isShuffle) {
-    result.sort((a: number, b: number) => {
+    order.sort((a: number, b: number) => {
       return Math.random() - 0.5;
     });
   }
 
-  return result;
+  return order.map((songIndex: number) => trackList[songIndex]);
 };
