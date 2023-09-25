@@ -12,10 +12,10 @@ exports.router.use(requireAuth_1.requireAuth);
 exports.router.get("/", playlist_controller_1.playlistController.getPlaylists);
 exports.router.post("/", playlist_controller_1.playlistController.createPlaylist);
 exports.router.put("/:id", playlist_controller_1.playlistController.updatePlaylist);
-exports.router.delete("/:id", playlist_controller_1.playlistController.removePlaylist);
-exports.router.post("/favorite", playlist_controller_1.playlistController.assignFavoriteSong);
 exports.router.get("/:id/songs", playlist_controller_1.playlistController.getAssignedSongs);
+exports.router.post("/favorite", playlist_controller_1.playlistController.assignFavoriteSong);
 exports.router.post("/:id/songs", playlist_controller_1.playlistController.assignSong);
 exports.router.delete("/:id/songs", playlist_controller_1.playlistController.removeSong);
 exports.router.delete("/favorite", playlist_controller_1.playlistController.removeFavoriteSong);
+exports.router.delete("/:id", playlist_controller_1.playlistController.removePlaylist);
 //# sourceMappingURL=playlists.js.map

@@ -12,14 +12,14 @@ router.post("/", playlistController.createPlaylist);
 
 router.put("/:id", playlistController.updatePlaylist);
 
-router.delete("/:id", playlistController.removePlaylist);
+router.get("/:id/songs", playlistController.getAssignedSongs);
 
 router.post("/favorite", playlistController.assignFavoriteSong);
-
-router.get("/:id/songs", playlistController.getAssignedSongs);
 
 router.post("/:id/songs", playlistController.assignSong);
 
 router.delete("/:id/songs", playlistController.removeSong);
 
 router.delete("/favorite", playlistController.removeFavoriteSong);
+
+router.delete("/:id", playlistController.removePlaylist);

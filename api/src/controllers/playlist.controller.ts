@@ -166,7 +166,7 @@ export const playlistController = {
       }
     } catch (error: unknown) {
       if (error instanceof Error) {
-        res.status(400).json({ message: error.message });
+        res.status(400).json({ message: "EeEeEeEeEeEeE" });
       }
     }
   },

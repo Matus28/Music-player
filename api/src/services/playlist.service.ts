@@ -472,7 +472,7 @@ export const removeFavoriteSongService = async (
   }
 
   if (playlistExist.length === 0) {
-    throw new Error("Playlist with this ID does not exist!");
+    throw new Error("Pppppppppppppppppplaylist with this ID does not exist!");
   }
 
   let assignedSongExist: AssignedSong[] = [];
