@@ -448,3 +448,67 @@ export const removeSongService = async (
     }
   }
 };
+
+export const removeFavoriteSongService = async (
+  ownerId: number,
+  songId: number
+) => {
+  console.log("wiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
+  let playlistExist: Playlist[] = [];
+  try {
+    playlistExist = await db
+      .select()
+      .from(playlist)
+      .where(
+        and(
+          eq(playlist.playlistOwner, ownerId),
+          eq(playlist.playlistName, "Favorite")
+        )
+      );
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.log(error.message);
+    }
+  }
+
+  if (playlistExist.length === 0) {
+    throw new Error("Playlist with this ID does not exist!");
+  }
+
+  let assignedSongExist: AssignedSong[] = [];
+  try {
+    assignedSongExist = await db
+      .select()
+      .from(assignedSong)
+      .where(
+        and(
+          eq(assignedSong.playlistId, playlistExist[0]?.playlistId ?? -1),
+          eq(assignedSong.songId, songId)
+        )
+      );
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.log(error.message);
+    }
+  }
+
+  if (assignedSongExist.length === 0) {
+    throw new Error("This song is not assigned to that playlist!");
+  }
+
+  try {
+    const result = await db
+      .delete(assignedSong)
+      .where(
+        and(
+          eq(assignedSong.playlistId, playlistExist[0]?.playlistId ?? -1),
+          eq(assignedSong.songId, songId)
+        )
+      );
+    return result;
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.log(error.message);
+    }
+  }
+};

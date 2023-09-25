@@ -21,3 +21,5 @@ router.get("/:id/songs", playlistController.getAssignedSongs);
 router.post("/:id/songs", playlistController.assignSong);
 
 router.delete("/:id/songs", playlistController.removeSong);
+
+router.delete("/favorite", playlistController.removeFavoriteSong);

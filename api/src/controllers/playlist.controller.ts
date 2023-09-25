@@ -5,6 +5,7 @@ import {
   createPlaylistService,
   getAllPlaylistsService,
   getAssignedSongsService,
+  removeFavoriteSongService,
   removePlaylistService,
   removeSongService,
   updatePlaylistService,
@@ -140,6 +141,24 @@ export const playlistController = {
         parseInt(playlistId ?? ""),
         songId
       );
+      if (result && result[0].affectedRows === 1) {
+        res
+          .status(200)
+          .json({ message: "Song successfully remove from playlist!" });
+      }
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        res.status(400).json({ message: error.message });
+      }
+    }
+  },
+
+  async removeFavoriteSong(req: Request, res: Response) {
+    const userId = req.user?.userId ?? -1;
+    const { songId } = req.body;
+    console.log("wuwuwuwuwuwuwwuwuwuwuwuwwwuwuwuwwuwuw");
+    try {
+      const result = await removeFavoriteSongService(userId, songId);
       if (result && result[0].affectedRows === 1) {
         res
           .status(200)
