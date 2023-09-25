@@ -1,3 +1,5 @@
+@use "../../style/style" as *;
+
 .wrapper {
   display: flex;
   justify-content: space-between;
@@ -15,9 +17,26 @@
   svg {
     cursor: pointer;
   }
+
+  svg {
+    cursor: pointer;
+    path {
+      color: $global__inactive;
+    }
+    &:hover {
+      scale: 1.5;
+    }
+    &:hover path {
+      color: $global__text;
+    }
+  }
 }
 
 .active {
-  filter: invert(57%) sepia(60%) saturate(329%) hue-rotate(91deg)
-    brightness(94%) contrast(91%);
+  svg {
+    path,
+    &:hover path {
+      color: $global__active-icon;
+    }
+  }
 }

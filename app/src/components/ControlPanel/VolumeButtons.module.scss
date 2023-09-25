@@ -1,5 +1,17 @@
+@use "../../style/style" as *;
+
 .wrapper {
   svg {
     cursor: pointer;
+
+    path {
+      color: $global__inactive;
+    }
+    &:hover {
+      scale: 1.5;
+    }
+    &:hover path {
+      color: $global__text;
+    }
   }
 }

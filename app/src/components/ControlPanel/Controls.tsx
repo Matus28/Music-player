@@ -10,22 +10,22 @@ import styles from "./Controls.module.scss";
 
 interface ControlsProps {
   musicPlayer: React.MutableRefObject<HTMLAudioElement | null>;
-  currentTrackList: Song[];
-  songIndex: number;
+  songIndex: number | null;
   ended: boolean;
   duration: number;
   position: number;
   isPlaying: boolean;
-  onSetSongIndex: (newValue: number) => void;
-  onSetCurrentSong: (newValue: Song) => void;
   onSetTriggerEnd: (newValue: boolean) => void;
   onSetPosition: (newValue: number) => void;
   onHandleNext: () => void;
+  onHandlePrevious: () => void;
   onSetIsPlaying: () => void;
 }
 
 export const Controls = (props: ControlsProps): JSX.Element => {
   const positionAnimation = React.useRef<number>();
+
+  const controlActive = props.songIndex !== null ? true : false;
 
   const repeat = React.useCallback((): void => {
     if (positionAnimation) {
@@ -60,71 +60,35 @@ export const Controls = (props: ControlsProps): JSX.Element => {
   }, [props.ended]);
 
   const handleTogglePlay = (): void => {
-    props.onSetIsPlaying();
-  };
-
-  const handlePrevious = (): void => {
-    let newIndex: number = props.songIndex;
-    if (
-      !props.isPlaying ||
-      (props.isPlaying &&
-        props.musicPlayer.current?.currentTime !== undefined &&
-        props.musicPlayer.current?.currentTime < 5)
-    ) {
-      newIndex = props.songIndex <= 0 ? 0 : props.songIndex - 1;
+    if (controlActive) {
+      props.onSetIsPlaying();
     }
-    props.onSetSongIndex(newIndex);
-    props.onSetCurrentSong(props.currentTrackList[newIndex]);
-    props.musicPlayer.current?.src
-      ? (props.musicPlayer.current.src =
-          props.currentTrackList[newIndex].songUrl)
-      : null;
-    props.isPlaying ? props.musicPlayer.current?.play() : handleTogglePlay();
   };
 
   const handleOnRewind = (): void => {
-    if (props.musicPlayer.current?.currentTime !== undefined) {
+    if (props.musicPlayer.current?.currentTime !== undefined && controlActive) {
       props.musicPlayer.current.currentTime -= 10;
     }
   };
 
   const handleOnForward = (): void => {
-    if (props.musicPlayer.current?.currentTime !== undefined) {
+    if (props.musicPlayer.current?.currentTime !== undefined && controlActive) {
       props.musicPlayer.current.currentTime += 10;
     }
   };
 
   return (
     <div className={styles.playback}>
-      <SkipPreviousIcon
-        sx={{ color: "#646464", "&:hover": { color: "#222222" } }}
-        onClick={handlePrevious}
-      />
-      <FastRewindIcon
-        sx={{ color: "#646464", "&:hover": { color: "#222222" } }}
-        onClick={handleOnRewind}
-      />
+      <SkipPreviousIcon onClick={props.onHandlePrevious} />
+      <FastRewindIcon onClick={handleOnRewind} />
 
       {props.isPlaying ? (
-        <PauseIcon
-          sx={{ color: "#646464", "&:hover": { color: "#222222" } }}
-          onClick={handleTogglePlay}
-        />
+        <PauseIcon onClick={handleTogglePlay} />
       ) : (
-        <PlayArrowIcon
-          sx={{ color: "#646464", "&:hover": { color: "#222222" } }}
-          onClick={handleTogglePlay}
-        />
+        <PlayArrowIcon onClick={handleTogglePlay} />
       )}
-      <FastForwardIcon
-        sx={{ color: "#646464", "&:hover": { color: "#222222" } }}
-        onClick={handleOnForward}
-      />
-      <SkipNextIcon
-        sx={{ color: "#646464", "&:hover": { color: "#222222" } }}
-        onClick={props.onHandleNext}
-        id="skipNext"
-      />
+      <FastForwardIcon onClick={handleOnForward} />
+      <SkipNextIcon onClick={props.onHandleNext} id="skipNext" />
     </div>
   );
 };

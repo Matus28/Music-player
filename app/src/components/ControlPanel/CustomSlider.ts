@@ -10,11 +10,13 @@ export const PositionSlider = styled(Slider)<SliderProps>(({ theme }) => ({
     width: 16,
     backgroundColor: "#fff",
     border: "2px solid currentColor",
+    visibility: "visible",
     "&:hover": {
       height: 24,
       width: 24,
       boxShadow: "inherit",
       cursor: "pointer",
+      visibility: "visible",
     },
     "&:focus, &.Mui-active, &.Mui-focusVisible": {
       boxShadow: "inherit",

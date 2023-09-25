@@ -1,3 +1,5 @@
+@use "../../style/style" as *;
+
 .playback {
   display: flex;
   justify-content: space-between;
@@ -7,5 +9,14 @@
 
   svg {
     cursor: pointer;
+    path {
+      color: $global__inactive;
+    }
+    &:hover {
+      scale: 1.5;
+    }
+    &:hover path {
+      color: $global__text;
+    }
   }
 }

@@ -1,3 +1,4 @@
+import * as React from "react";
 import { Song } from "../../utils/types";
 import { Controls } from "./Controls";
 import { LoadTrack } from "./LoadTrack";
@@ -8,53 +9,50 @@ import styles from "./ControlPanel.module.scss";
 
 interface ControlPanelProps {
   musicPlayer: React.MutableRefObject<HTMLAudioElement | null>;
-  currentTrackList: Song[];
-  currentSong: Song | null;
-  songIndex: number;
+  playingTrackList: Song[];
+  playingSongIndex: number | null;
   ended: boolean;
-  duration: number;
-  position: number;
   isShuffle: boolean;
   isPlaying: boolean;
-  onSetSongIndex: (newValue: number) => void;
-  onSetCurrentSong: (newValue: Song) => void;
   onSetTriggerEnd: (newValue: boolean) => void;
-  onSetPosition: (newValue: number) => void;
-  onSetDuration: (newValue: number) => void;
   onHandleNext: () => void;
+  onHandlePrevious: () => void;
   onShuffleHandle: () => void;
   onSetIsPlaying: () => void;
 }
 
 export const ControlPanel = (props: ControlPanelProps): JSX.Element => {
+  const [duration, setDuration] = React.useState<number>(0);
+  const [position, setPosition] = React.useState<number>(0);
+
   return (
     <div className={styles.wrapper}>
       <LoadTrack
-        currentSong={props.currentSong}
+        currentSong={
+          props.playingTrackList[props.playingSongIndex ?? 0] ?? null
+        }
         musicPlayer={props.musicPlayer}
-        setDuration={props.onSetDuration}
+        setDuration={setDuration}
         onHandleNext={props.onHandleNext}
       />
       <Controls
         musicPlayer={props.musicPlayer}
-        duration={props.duration}
-        position={props.position}
-        onSetPosition={props.onSetPosition}
-        currentTrackList={props.currentTrackList ?? []}
-        songIndex={props.songIndex}
+        duration={duration}
+        position={position}
+        onSetPosition={setPosition}
+        songIndex={props.playingSongIndex}
         isPlaying={props.isPlaying}
-        onSetSongIndex={props.onSetSongIndex}
-        onSetCurrentSong={props.onSetCurrentSong}
         onHandleNext={props.onHandleNext}
+        onHandlePrevious={props.onHandlePrevious}
         ended={props.ended}
         onSetTriggerEnd={props.onSetTriggerEnd}
         onSetIsPlaying={props.onSetIsPlaying}
       />
       <ProgressSlider
         musicPlayer={props.musicPlayer}
-        duration={props.duration}
-        position={props.position}
-        onSetPosition={props.onSetPosition}
+        duration={duration}
+        position={position}
+        onSetPosition={setPosition}
       />
       <Shuffle
         isShuffle={props.isShuffle}
