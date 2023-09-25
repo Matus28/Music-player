@@ -116,19 +116,12 @@ const Home = (): JSX.Element => {
   };
 
   const handleSelectSong = (orderIndex: number, playlistId: number): void => {
-    console.log("-----------------------------------------");
-    console.log("Click was clickeeeeeeeeeeeeeeeed!!!!!!!!");
-    console.log(`OrderIndex: ${orderIndex}`);
-    console.log(`PlaylistId: ${playlistId}`);
-    console.log("-----------------------------------------");
     setPlayingPlaylistIndex(playlistId);
     setPlayingTrackList(currentTrackList);
     setPlayingSongIndex(orderIndex);
     if (playingPlaylistIndex !== playlistId) {
       createPlayingTrackListOrder(orderIndex);
     }
-    console.log(playingSongIndex);
-    console.log(orderIndex);
   };
 
   const handleNext = (): void => {

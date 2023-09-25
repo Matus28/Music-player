@@ -12,9 +12,6 @@ export const TrackList = (props: {
   onSelect: (id: number, playlistId: number) => void;
   onRemoveSong: (formData: { songId: number }) => void;
 }): JSX.Element => {
-  console.log("&&&&&&&&&&&&&&&& Selected Song &&&&&&&&&&&&&&&&&");
-  console.log(props.selectedSong);
-  console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
   return (
     <ul className={styles.list}>
       {props.data &&
