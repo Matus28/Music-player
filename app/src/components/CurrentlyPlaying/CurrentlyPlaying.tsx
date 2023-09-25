@@ -5,6 +5,7 @@ import { AddSongForm } from "../Dialogs/AddSongForm";
 import { useAssignSong } from "../../hooks/useAssignSong";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import styles from "./CurrentlyPlaying.module.scss";
+import { useDeleteAssignedSong } from "../../hooks/useDeleteAssignedSong";
 
 export const CurrentlyPlaying = (props: {
   currentSong: Song | null;
@@ -14,14 +15,23 @@ export const CurrentlyPlaying = (props: {
   const { state: userValue } = useAuthContext();
 
   const postMutationRes = useAssignSong();
+  const deleteMutationRes = useDeleteAssignedSong();
 
   const handleAddToFavorites = (): void => {
-    if (props.currentSong) {
-      postMutationRes.mutateAsync({
-        playlistName: "Favorite",
-        songId: props.currentSong.songId,
-        userValue: userValue,
-      });
+    if (!props.currentSong) {
+      return;
+    }
+
+    const data = {
+      playlistName: "Favorite",
+      songId: props.currentSong.songId,
+      userValue: userValue,
+    };
+
+    if (!props.isFavorite) {
+      postMutationRes.mutateAsync(data);
+    } else {
+      deleteMutationRes.mutateAsync(data);
     }
   };
 
