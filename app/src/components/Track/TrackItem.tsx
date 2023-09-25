@@ -51,8 +51,12 @@ export const TrackItem = (props: {
             props.onItemClick();
           }}
         >
-          <PlayingIcon active={(props.isActive ?? false) && props.isPlaying} />
-          <div className={styles.index}>{props.index}</div>
+          {props.isActive && (
+            <PlayingIcon
+              playing={(props.isActive ?? false) && props.isPlaying}
+            />
+          )}
+          {!props.isActive && <div className={styles.index}>{props.index}</div>}
           <div
             className={styles.title}
           >{`${props.title} (${props.interpret})`}</div>

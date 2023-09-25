@@ -34,7 +34,7 @@
       background: #ececec;
     }
     &:hover {
-      filter: saturate(2);
+      background-color: $global__hover-row;
     }
   }
 }

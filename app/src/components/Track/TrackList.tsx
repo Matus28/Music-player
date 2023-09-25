@@ -1,16 +1,20 @@
-import { Song } from "../../utils/types";
+import * as React from "react";
+import { Playlist, Song } from "../../utils/types";
 import { TrackItem } from "./TrackItem";
 import styles from "./TrackList.module.scss";
 
 export const TrackList = (props: {
   data: Song[];
-  playlistTitle: string;
-  playlistId: number;
+  playlist: Playlist;
   isPlaying: boolean;
   selectedSong: Song | null;
-  onSelect: (id: number) => void;
+  playingPlaylistId: number | null;
+  onSelect: (id: number, playlistId: number) => void;
   onRemoveSong: (formData: { songId: number }) => void;
 }): JSX.Element => {
+  console.log("&&&&&&&&&&&&&&&& Selected Song &&&&&&&&&&&&&&&&&");
+  console.log(props.selectedSong);
+  console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
   return (
     <ul className={styles.list}>
       {props.data &&
@@ -19,17 +23,19 @@ export const TrackList = (props: {
             key={song.songId}
             index={index + 1}
             title={song.songName}
-            playlistId={props.playlistId}
+            playlistId={props.playlist.playlistId}
+            playlistTitle={props.playlist.playlistName}
             songId={song.songId}
             interpret={song.songArtist}
             songLength={song.songLength}
-            playlistTitle={props.playlistTitle}
             isPlaying={props.isPlaying}
             isActive={
-              props.selectedSong && props.selectedSong.songId === song.songId
+              props.selectedSong &&
+              props.selectedSong.songId === song.songId &&
+              props.playlist.playlistId === props.playingPlaylistId
             }
             onItemClick={() => {
-              props.onSelect(song.songId);
+              props.onSelect(index, props.playlist.playlistId);
             }}
             onRemoveSong={props.onRemoveSong}
           />
