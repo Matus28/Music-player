@@ -1,10 +1,10 @@
 import * as React from "react";
 import Logo from "../components/Logo/Logo";
+import Footer from "../components/Footer/Footer";
 import { CurrentlyPlaying } from "../components/CurrentlyPlaying/CurrentlyPlaying";
 import { PlaylistList } from "../components/Playlist/PlaylistList";
 import { Playlist, Song } from "../utils/types";
 import { TrackList } from "../components/Track/TrackList";
-import { setTrackListOrder } from "../utils/setTrackListOrder";
 import { ControlPanel } from "../components/ControlPanel/ControlPanel";
 import { useTrackList } from "../hooks/useTrackList";
 import { useAuthContext } from "../hooks/useAuthContext";
@@ -12,8 +12,9 @@ import { useLibrary } from "../hooks/useLibrary";
 import { processData } from "../utils/processData";
 import { Container } from "../components/Container/Container";
 import { NavBar } from "../components/NavBar/NavBar";
+import { checkFavoritePlaylist } from "../utils/checkFavoritePlaylist";
+import { setTrackListOrder } from "../utils/setTrackListOrder";
 import styles from "./Home.module.scss";
-import Footer from "../components/Footer/Footer";
 
 const Home = (): JSX.Element => {
   const { state: userValue } = useAuthContext();
@@ -23,19 +24,20 @@ const Home = (): JSX.Element => {
     null
   );
   const [currentTrackList, setCurrentTrackList] = React.useState<Song[]>([]);
-  const [currentSong, setCurrentSong] = React.useState<Song | null>(null);
-  const [duration, setDuration] = React.useState<number>(0);
-  const [position, setPosition] = React.useState<number>(0);
-  const [songIndex, setSongIndex] = React.useState<number>(0);
+  const [playingTrackList, setPlayingTrackList] = React.useState<Song[]>([]);
+  const [playingSongIndex, setPlayingSongIndex] = React.useState<number | null>(
+    null
+  );
+  const [playingPlaylistIndex, setPlayingPlaylistIndex] = React.useState<
+    number | null
+  >(null);
   const [isShuffle, setIsShuffle] = React.useState<boolean>(false);
-  const [tracksOrder, setTracksOrder] = React.useState<number[]>([]);
   const [triggerEnd, setTriggerEnd] = React.useState<boolean>(false);
   const [isPlaying, setIsPlaying] = React.useState<boolean>(false);
 
   const musicPlayer = React.useRef<HTMLAudioElement | null>(null);
 
   const libraryQuery = useLibrary(userValue);
-
   const trackQuery = useTrackList(userValue);
 
   React.useEffect(() => {
@@ -46,34 +48,49 @@ const Home = (): JSX.Element => {
       setPlaylists(allPlaylists);
       if (!currentPlaylist) {
         setCurrentPlaylist(allPlaylists[0]);
-      } else {
-        setCurrentTrackList(
-          processData.getTrackList(
-            trackQuery.data ?? [],
-            currentPlaylist.playlistId,
-            libraryQuery.data?.playlists ?? []
-          )
+        const currentTrackListVar = processData.getTrackList(
+          trackQuery.data ?? [],
+          allPlaylists[0].playlistId,
+          libraryQuery.data?.playlists ?? []
         );
+        setCurrentTrackList(currentTrackListVar);
+        setPlayingTrackList(currentTrackListVar);
       }
     }
   }, [libraryQuery.data]);
 
   React.useEffect(() => {
     if (trackQuery.data && trackQuery.data.length > 0) {
+      setCurrentPlaylist(playlists[0]);
       setCurrentTrackList(trackQuery.data);
     }
   }, [trackQuery.data]);
 
   React.useEffect(() => {
-    if (currentTrackList) {
-      const newTracksOrder = setTrackListOrder(
-        currentTrackList.length,
-        isShuffle
+    if (currentPlaylist) {
+      setCurrentTrackList(
+        processData.getTrackList(
+          trackQuery.data ?? [],
+          currentPlaylist?.playlistId,
+          libraryQuery.data?.playlists ?? []
+        )
       );
-      setTracksOrder(newTracksOrder);
-      setCurrentSong(currentTrackList[newTracksOrder[0]]);
     }
-  }, [currentTrackList, isShuffle]);
+  }, []);
+
+  React.useEffect(() => {
+    createPlayingTrackListOrder();
+  }, [isShuffle]);
+
+  const createPlayingTrackListOrder = (orderIndex: number = 0): void => {
+    const newPlayingTrackList = setTrackListOrder(playingTrackList, isShuffle);
+    setPlayingTrackList(newPlayingTrackList);
+    if (playingSongIndex !== null && orderIndex === 0) {
+      setPlayingSongIndex(0);
+    } else if (playingSongIndex !== null && orderIndex > 0) {
+      setPlayingSongIndex(orderIndex);
+    }
+  };
 
   const handleSelectPlaylist = (playlistId: number): void => {
     const filteredPlaylist = playlists?.filter(
@@ -98,36 +115,57 @@ const Home = (): JSX.Element => {
     }
   };
 
-  const handleSelectSong = (songId: number): void => {
-    const filteredTrackList = currentTrackList?.filter(
-      (song: Song) => song.songId === songId
-    )[0];
-    // To secure that tracksOrder will not set the selected (current) song again
-    currentTrackList.forEach((track: Song, index: number) => {
-      if (track.songId === songId) {
-        tracksOrder.forEach((trackOrder: number, ind: number) => {
-          if (index === trackOrder) {
-            setSongIndex(ind);
-          }
-        });
-      }
-    });
-
-    setCurrentSong(filteredTrackList ?? currentTrackList[0]);
-    console.log(`Current Song: ${filteredTrackList}`);
+  const handleSelectSong = (orderIndex: number, playlistId: number): void => {
+    console.log("-----------------------------------------");
+    console.log("Click was clickeeeeeeeeeeeeeeeed!!!!!!!!");
+    console.log(`OrderIndex: ${orderIndex}`);
+    console.log(`PlaylistId: ${playlistId}`);
+    console.log("-----------------------------------------");
+    setPlayingPlaylistIndex(playlistId);
+    setPlayingTrackList(currentTrackList);
+    setPlayingSongIndex(orderIndex);
+    if (playingPlaylistIndex !== playlistId) {
+      createPlayingTrackListOrder(orderIndex);
+    }
+    console.log(playingSongIndex);
+    console.log(orderIndex);
   };
 
   const handleNext = (): void => {
-    const newIndex = songIndex >= tracksOrder.length - 1 ? 0 : songIndex + 1;
-    setSongIndex(newIndex);
-    setCurrentSong(currentTrackList[tracksOrder[newIndex]]);
+    if (playingSongIndex === null) {
+      return;
+    }
+    const newIndex =
+      playingSongIndex >= playingTrackList.length - 1
+        ? 0
+        : playingSongIndex + 1;
+    setPlayingSongIndex(newIndex);
     musicPlayer.current?.src
-      ? (musicPlayer.current.src =
-          currentTrackList[tracksOrder[newIndex]].songUrl)
+      ? (musicPlayer.current.src = playingTrackList[newIndex].songUrl)
       : null;
-    if (songIndex === tracksOrder.length - 1) {
+    if (playingSongIndex === playingTrackList.length - 1) {
       setTriggerEnd((prev: boolean) => !prev);
     }
+  };
+
+  const handlePrevious = (): void => {
+    if (!playingSongIndex) {
+      return;
+    }
+    let newIndex: number = playingSongIndex;
+    if (
+      !isPlaying ||
+      (isPlaying &&
+        musicPlayer.current?.currentTime !== undefined &&
+        musicPlayer.current?.currentTime < 5)
+    ) {
+      newIndex = playingSongIndex <= 0 ? 0 : playingSongIndex - 1;
+    }
+    setPlayingSongIndex(newIndex);
+    musicPlayer.current?.src
+      ? (musicPlayer.current.src = playingTrackList[newIndex].songUrl)
+      : null;
+    isPlaying ? musicPlayer.current?.play() : handleToggleIsPlaying();
   };
 
   const handleToggleShuffle = (): void => {
@@ -152,34 +190,37 @@ const Home = (): JSX.Element => {
             />
           </div>
           <div className={styles.rightPanel}>
-            <CurrentlyPlaying currentSong={currentSong} playlists={playlists} />
-            <TrackList
-              data={currentTrackList}
-              playlistTitle={currentPlaylist?.playlistName ?? ""}
-              playlistId={currentPlaylist?.playlistId ?? -1}
-              selectedSong={currentSong}
-              isPlaying={isPlaying}
-              onSelect={handleSelectSong}
-              onRemoveSong={handleRemoveSong}
+            <CurrentlyPlaying
+              currentSong={playingTrackList[playingSongIndex ?? -1]}
+              playlists={playlists}
+              isFavorite={checkFavoritePlaylist(
+                playingTrackList[playingSongIndex ?? -1],
+                libraryQuery.data
+              )}
             />
+            {currentPlaylist && (
+              <TrackList
+                data={currentTrackList}
+                playlist={currentPlaylist}
+                selectedSong={playingTrackList[playingSongIndex ?? -1]}
+                playingPlaylistId={playingPlaylistIndex}
+                isPlaying={isPlaying}
+                onSelect={handleSelectSong}
+                onRemoveSong={handleRemoveSong}
+              />
+            )}
           </div>
           <div className={styles.bottomPanel}>
             <ControlPanel
               musicPlayer={musicPlayer}
-              currentTrackList={currentTrackList ?? []}
-              currentSong={currentSong}
-              songIndex={songIndex}
+              playingTrackList={playingTrackList ?? []}
+              playingSongIndex={playingSongIndex}
               ended={triggerEnd}
-              duration={duration}
-              position={position}
               isShuffle={isShuffle}
               isPlaying={isPlaying}
-              onSetSongIndex={setSongIndex}
-              onSetCurrentSong={setCurrentSong}
               onSetTriggerEnd={setTriggerEnd}
-              onSetDuration={setDuration}
-              onSetPosition={setPosition}
               onHandleNext={handleNext}
+              onHandlePrevious={handlePrevious}
               onShuffleHandle={handleToggleShuffle}
               onSetIsPlaying={handleToggleIsPlaying}
             />
