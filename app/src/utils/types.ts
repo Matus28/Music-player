@@ -20,11 +20,7 @@ export type User = {
   token: string;
 };
 
-export type PlaylistElement = {
-  playlistId: number;
-  playlistName: string;
-  playlistOwner: number;
-  playlistDeletable: boolean;
+export type PlaylistElement = Playlist & {
   playlistSongs: Song[];
 };
 
