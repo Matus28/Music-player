@@ -15,10 +15,10 @@ export const TrackList = (props: {
   return (
     <ul className={styles.list}>
       {props.data &&
-        props.data.map((song: Song, index: number) => (
+        props.data.map((song: Song, i: number) => (
           <TrackItem
             key={song.songId}
-            index={index + 1}
+            index={i + 1}
             title={song.songName}
             playlistId={props.playlist.playlistId}
             playlistTitle={props.playlist.playlistName}
@@ -32,7 +32,7 @@ export const TrackList = (props: {
               props.playlist.playlistId === props.playingPlaylistId
             }
             onItemClick={() => {
-              props.onSelect(index, props.playlist.playlistId);
+              props.onSelect(i, props.playlist.playlistId);
             }}
             onRemoveSong={props.onRemoveSong}
           />

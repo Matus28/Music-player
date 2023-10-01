@@ -25,12 +25,12 @@ const Home = (): JSX.Element => {
   );
   const [currentTrackList, setCurrentTrackList] = React.useState<Song[]>([]);
   const [playingTrackList, setPlayingTrackList] = React.useState<Song[]>([]);
-  const [playingSongIndex, setPlayingSongIndex] = React.useState<number | null>(
-    null
-  );
   const [playingPlaylistIndex, setPlayingPlaylistIndex] = React.useState<
     number | null
   >(null);
+  const [playingSongIndex, setPlayingSongIndex] = React.useState<number | null>(
+    null
+  );
   const [isShuffle, setIsShuffle] = React.useState<boolean>(false);
   const [triggerEnd, setTriggerEnd] = React.useState<boolean>(false);
   const [isPlaying, setIsPlaying] = React.useState<boolean>(false);
@@ -83,11 +83,9 @@ const Home = (): JSX.Element => {
   }, [isShuffle]);
 
   const createPlayingTrackListOrder = (orderIndex: number = 0): void => {
-    const newPlayingTrackList = setTrackListOrder(playingTrackList, isShuffle);
+    const newPlayingTrackList = setTrackListOrder(currentTrackList, isShuffle);
     setPlayingTrackList(newPlayingTrackList);
-    if (playingSongIndex !== null && orderIndex === 0) {
-      setPlayingSongIndex(0);
-    } else if (playingSongIndex !== null && orderIndex > 0) {
+    if (playingSongIndex !== null) {
       setPlayingSongIndex(orderIndex);
     }
   };

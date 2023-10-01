@@ -6,7 +6,7 @@ import styles from "./VolumeControls.module.scss";
 export const VolumeControls = (props: {
   musicPlayer: React.MutableRefObject<HTMLAudioElement | null>;
 }): JSX.Element => {
-  const [volume, setVolume] = React.useState<number>(50);
+  const [volume, setVolume] = React.useState<number>(20);
   const [mute, setMute] = React.useState<boolean>(false);
 
   const handleChangeVolume = (event: Event, newValue: number | number[]) => {
