@@ -51,7 +51,7 @@ export const CurrentlyPlaying = (props: {
           }`}
         >
           <AddSongForm
-            currentSong={props.currentSong}
+            currentSongId={props.currentSong.songId}
             playlists={props.playlists}
           />
           <GradeIcon
