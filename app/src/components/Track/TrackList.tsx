@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Playlist, Song } from "../../utils/types";
 import { TrackItem } from "./TrackItem";
 import styles from "./TrackList.module.scss";
@@ -6,11 +5,11 @@ import styles from "./TrackList.module.scss";
 export const TrackList = (props: {
   data: Song[];
   playlist: Playlist;
+  playlists: Playlist[];
   isPlaying: boolean;
   selectedSong: Song | null;
   playingPlaylistId: number | null;
   onSelect: (id: number, playlistId: number) => void;
-  onRemoveSong: (formData: { songId: number }) => void;
 }): JSX.Element => {
   return (
     <ul className={styles.list}>
@@ -19,6 +18,8 @@ export const TrackList = (props: {
           <TrackItem
             key={song.songId}
             index={i + 1}
+            playlist={props.playlist}
+            playlists={props.playlists}
             title={song.songName}
             playlistId={props.playlist.playlistId}
             playlistTitle={props.playlist.playlistName}
@@ -34,7 +35,6 @@ export const TrackList = (props: {
             onItemClick={() => {
               props.onSelect(i, props.playlist.playlistId);
             }}
-            onRemoveSong={props.onRemoveSong}
           />
         ))}
     </ul>
