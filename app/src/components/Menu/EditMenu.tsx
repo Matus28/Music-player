@@ -1,5 +1,6 @@
 import { Menu, MenuItem, Typography } from "@mui/material";
 import { OptionIcon } from "./OptionIcon";
+import { Playlist, Song } from "../../utils/types";
 
 interface EditMenuProps {
   anchorEl: HTMLElement | null;
