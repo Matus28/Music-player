@@ -55,6 +55,13 @@ const Home = (): JSX.Element => {
         );
         setCurrentTrackList(currentTrackListVar);
         setPlayingTrackList(currentTrackListVar);
+      } else if (currentPlaylist) {
+        const currentTrackListVar = processData.getTrackList(
+          trackQuery.data ?? [],
+          currentPlaylist.playlistId,
+          libraryQuery.data?.playlists ?? []
+        );
+        setCurrentTrackList(currentTrackListVar);
       }
     }
   }, [libraryQuery.data]);
@@ -102,15 +109,6 @@ const Home = (): JSX.Element => {
         libraryQuery.data?.playlists ?? []
       )
     );
-  };
-
-  const handleRemoveSong = (formData: { songId: number }): void => {
-    const updatePlaylist = currentTrackList.filter(
-      (track: Song) => track.songId !== formData.songId
-    );
-    if (currentTrackList) {
-      setCurrentTrackList(updatePlaylist);
-    }
   };
 
   const handleSelectSong = (orderIndex: number, playlistId: number): void => {
@@ -193,11 +191,11 @@ const Home = (): JSX.Element => {
               <TrackList
                 data={currentTrackList}
                 playlist={currentPlaylist}
+                playlists={playlists}
                 selectedSong={playingTrackList[playingSongIndex ?? -1]}
                 playingPlaylistId={playingPlaylistIndex}
                 isPlaying={isPlaying}
                 onSelect={handleSelectSong}
-                onRemoveSong={handleRemoveSong}
               />
             )}
           </div>
