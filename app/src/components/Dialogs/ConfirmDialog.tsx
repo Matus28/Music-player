@@ -1,10 +1,9 @@
-import * as React from "react";
 import { Button, Dialog, DialogActions, DialogContent } from "@mui/material";
 import { CustomizedDialogTitle } from "./CustomizedDialogComponents";
-import "./ConfirmDialog.css";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useDeletePlaylist } from "../../hooks/useDeletePlaylist";
 import { useDeleteAssignedSong } from "../../hooks/useDeleteAssignedSong";
+import "./ConfirmDialog.css";
 
 export interface ConfirmDialogProps {
   open: boolean;

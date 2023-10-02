@@ -52,7 +52,6 @@ export const AddPlaylistForm = (props: {
 
   const submitHandler = (ev: React.FormEvent<HTMLFormElement>): void => {
     ev.preventDefault();
-    console.log("wiiiiiiiiiii");
 
     const inputPlaylistName = ev.currentTarget.elements.namedItem(
       "playlist-name"
