@@ -4,9 +4,14 @@
   justify-content: space-between;
   align-items: center;
   max-width: 1300px;
-  min-height: calc(100vh - 32px);
+  height: 100%;
   margin: 0 auto;
-  padding: 1rem;
-  gap: 2rem;
+  // gap: 2rem;
   background-color: inherit;
+}
+
+@media (max-width: 1084px) {
+  .container {
+    width: 100vw;
+  }
 }
