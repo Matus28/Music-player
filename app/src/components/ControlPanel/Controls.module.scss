@@ -2,13 +2,14 @@
 
 .playback {
   display: flex;
+  width: 100%;
+  flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
-  scale: 1.2;
 
   svg {
     cursor: pointer;
+    scale: 1.2;
     path {
       color: $global__inactive;
     }
@@ -17,6 +18,28 @@
     }
     &:hover path {
       color: $global__text;
+    }
+  }
+}
+
+@media (max-width: 1084px) {
+  .playback {
+    svg {
+      scale: 1.8;
+      &:hover {
+        scale: 1.8;
+      }
+    }
+  }
+
+  .playbutton {
+    padding: 0.5rem;
+
+    svg {
+      height: 2rem;
+      width: 2rem;
+      background-color: rgb(241, 172, 172);
+      border-radius: 2rem;
     }
   }
 }

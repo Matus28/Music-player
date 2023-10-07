@@ -1,4 +1,5 @@
 import { Song } from "../../utils/types";
+import styles from "./LoadTrack.module.scss";
 
 export const LoadTrack = (props: {
   currentSong: Song | null;
@@ -16,7 +17,7 @@ export const LoadTrack = (props: {
     }
   };
   return (
-    <div>
+    <div className={styles.audio}>
       <audio
         src={props.currentSong?.songUrl}
         ref={props.musicPlayer}

@@ -1,9 +1,50 @@
+@use "../../style/style" as *;
+
 .wrapper {
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  padding-right: 2rem;
+  padding: 0 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: $global__main-background;
+}
+
+.controls {
+  width: 217px;
+}
+
+@media (max-width: 1084px) {
+  .wrapper {
+    height: $global__control-bar-height;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    display: grid;
+    grid-template-columns: 1fr 8fr 1fr;
+    grid-template-rows: repeat(3, 1fr);
+  }
+
+  .progress {
+    grid-column: 1 / span 3;
+    grid-row: 1;
+  }
+
+  .controls {
+    grid-column: 1 / span 3;
+    grid-row: 2;
+    justify-self: center;
+  }
+
+  .volume {
+    grid-column: 1 / span 2;
+    grid-row: 3;
+    justify-self: flex-start;
+  }
+
+  .shuffle {
+    grid-column: 3 / span 1;
+    grid-row: 3;
+  }
 }

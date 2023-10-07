@@ -7,6 +7,7 @@ import FastForwardIcon from "@mui/icons-material/FastForward";
 import FastRewindIcon from "@mui/icons-material/FastRewind";
 import { Song } from "../../utils/types";
 import styles from "./Controls.module.scss";
+import { DeviceContext } from "../../context/DeviceContext";
 
 interface ControlsProps {
   musicPlayer: React.MutableRefObject<HTMLAudioElement | null>;
@@ -23,6 +24,8 @@ interface ControlsProps {
 }
 
 export const Controls = (props: ControlsProps): JSX.Element => {
+  const isMobile = React.useContext(DeviceContext);
+
   const positionAnimation = React.useRef<number>();
 
   const controlActive = props.songIndex !== null ? true : false;
@@ -80,15 +83,21 @@ export const Controls = (props: ControlsProps): JSX.Element => {
   return (
     <div className={styles.playback}>
       <SkipPreviousIcon onClick={props.onHandlePrevious} />
-      <FastRewindIcon onClick={handleOnRewind} />
-
-      {props.isPlaying ? (
-        <PauseIcon onClick={handleTogglePlay} />
-      ) : (
-        <PlayArrowIcon onClick={handleTogglePlay} />
+      {!isMobile && (
+        <FastRewindIcon onClick={handleOnRewind} className={styles.rewind} />
       )}
-      <FastForwardIcon onClick={handleOnForward} />
-      <SkipNextIcon onClick={props.onHandleNext} id="skipNext" />
+
+      <div className={styles.playbutton}>
+        {props.isPlaying ? (
+          <PauseIcon onClick={handleTogglePlay} />
+        ) : (
+          <PlayArrowIcon onClick={handleTogglePlay} />
+        )}
+      </div>
+      {!isMobile && (
+        <FastForwardIcon onClick={handleOnForward} className={styles.forward} />
+      )}
+      <SkipNextIcon onClick={props.onHandleNext} />
     </div>
   );
 };

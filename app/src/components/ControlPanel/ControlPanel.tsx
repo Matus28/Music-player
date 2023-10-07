@@ -35,30 +35,38 @@ export const ControlPanel = (props: ControlPanelProps): JSX.Element => {
         setDuration={setDuration}
         onHandleNext={props.onHandleNext}
       />
-      <Controls
-        musicPlayer={props.musicPlayer}
-        duration={duration}
-        position={position}
-        onSetPosition={setPosition}
-        songIndex={props.playingSongIndex}
-        isPlaying={props.isPlaying}
-        onHandleNext={props.onHandleNext}
-        onHandlePrevious={props.onHandlePrevious}
-        ended={props.ended}
-        onSetTriggerEnd={props.onSetTriggerEnd}
-        onSetIsPlaying={props.onSetIsPlaying}
-      />
-      <ProgressSlider
-        musicPlayer={props.musicPlayer}
-        duration={duration}
-        position={position}
-        onSetPosition={setPosition}
-      />
-      <Shuffle
-        isShuffle={props.isShuffle}
-        onClickHandle={props.onShuffleHandle}
-      />
-      <VolumeControls musicPlayer={props.musicPlayer} />
+      <div className={styles.controls}>
+        <Controls
+          musicPlayer={props.musicPlayer}
+          duration={duration}
+          position={position}
+          onSetPosition={setPosition}
+          songIndex={props.playingSongIndex}
+          isPlaying={props.isPlaying}
+          onHandleNext={props.onHandleNext}
+          onHandlePrevious={props.onHandlePrevious}
+          ended={props.ended}
+          onSetTriggerEnd={props.onSetTriggerEnd}
+          onSetIsPlaying={props.onSetIsPlaying}
+        />
+      </div>
+      <div className={styles.progress}>
+        <ProgressSlider
+          musicPlayer={props.musicPlayer}
+          duration={duration}
+          position={position}
+          onSetPosition={setPosition}
+        />
+      </div>
+      <div className={styles.shuffle}>
+        <Shuffle
+          isShuffle={props.isShuffle}
+          onClickHandle={props.onShuffleHandle}
+        />
+      </div>
+      <div className={styles.volume}>
+        <VolumeControls musicPlayer={props.musicPlayer} />
+      </div>
     </div>
   );
 };
