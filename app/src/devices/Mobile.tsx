@@ -191,7 +191,15 @@ const Mobile = (): JSX.Element => {
               onSelect={handleSelectPlaylist}
             />
           </div>
-          <div className={styles.rightPanel}>
+          <div
+            className={`${styles.rightPanel} ${
+              isMobile &&
+              (tabContext?.activeTab === "Current Song" ||
+                tabContext?.activeTab === "Tracklist")
+                ? styles.active
+                : ""
+            }`}
+          >
             <div
               className={`${styles.up} ${
                 isMobile && tabContext?.activeTab === "Current Song"

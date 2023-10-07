@@ -47,17 +47,20 @@
     height: 100%;
     width: 100%;
   }
+
   .leftPanel {
     display: none;
     position: absolute;
     top: 0;
-    right: 0;
+    left: 0;
     height: calc(100% - $global__control-bar-height);
     min-width: 0;
     width: 100%;
     background-color: $global__music-player;
   }
+
   .rightPanel {
+    display: none;
     position: absolute;
     top: 0;
     right: 0;
@@ -78,8 +81,8 @@
       display: block;
     }
   }
-}
 
-.active {
-  display: block;
+  .active {
+    display: block;
+  }
 }
