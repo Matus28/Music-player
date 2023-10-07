@@ -6,6 +6,7 @@ import { PlayingIcon } from "../PlayingIcon/PlayingIcon";
 import { Playlist } from "../../utils/types";
 import { AddSongDialog } from "../Dialogs/AddSongDialog";
 import styles from "./TrackItem.module.scss";
+import { DeviceContext } from "../../context/DeviceContext";
 
 export const TrackItem = (props: {
   index: number;
@@ -24,6 +25,8 @@ export const TrackItem = (props: {
   const [openAddSongDialog, setOpenAddSongDialog] = React.useState(false);
   const [openConfirmDialog, setOpenConfirmDialog] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+
+  const isMobile = React.useContext(DeviceContext);
 
   const editOptions =
     props.playlist.playlistName === "All Tracks"
@@ -76,7 +79,9 @@ export const TrackItem = (props: {
           <div
             className={styles.title}
           >{`${props.title} (${props.interpret})`}</div>
-          <div className={styles.duration}>{props.songLength}</div>
+          {!isMobile && (
+            <div className={styles.duration}>{props.songLength}</div>
+          )}
         </div>
         <div className={styles.menu}>
           <OptionButton isOpen={open} handleClick={handleOpenOption} />

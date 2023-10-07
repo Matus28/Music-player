@@ -38,3 +38,11 @@
     }
   }
 }
+
+@media (max-width: 1084px) {
+  .list {
+    margin: 0;
+    max-height: none;
+    height: 100%;
+  }
+}

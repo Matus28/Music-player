@@ -27,6 +27,7 @@
 
 .title {
   max-width: 380px;
+  width: calc(100vw - 18px - 36px - 50px);
   max-height: inherit;
   overflow: hidden;
   display: inline-block;
