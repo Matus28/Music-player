@@ -1,4 +1,93 @@
-.device {
-  width: 100vw;
-  height: 100vh;
+@use "../style/style" as *;
+
+.wrapper {
+  height: calc(100vh - 96px);
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.musicPlayer {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+  border-radius: 0.8rem;
+  background-color: $global__music-player;
+  box-shadow: 0px 9px 25px rgba(0, 0, 0, 0.3);
+  max-width: 1050px;
+  height: 520px;
+}
+
+.leftPanel {
+  min-width: 450px;
+  height: 444px;
+}
+
+.rightPanel {
+  width: 590px;
+}
+
+.bottomPanel {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  flex-basis: 100%;
+  min-height: 75px;
+  width: 100%;
+  background-color: white;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+@media (max-width: 1084px) {
+  .musicPlayer {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+
+  .leftPanel {
+    display: none;
+    position: relative;
+    top: 0;
+    left: 0;
+    height: calc(100% - $global__control-bar-height);
+    min-width: 0;
+    width: 100%;
+    background-color: $global__music-player;
+  }
+
+  .rightPanel {
+    display: none;
+    position: relative;
+    top: 0;
+    right: 0;
+    height: calc(100% - $global__control-bar-height);
+    width: 100%;
+    background-color: $global__music-player;
+
+    .up {
+      display: none;
+      height: 100%;
+    }
+
+    .down {
+      display: none;
+      height: 100%;
+    }
+
+    .active {
+      display: block;
+    }
+  }
+
+  .active {
+    display: block;
+  }
+
+  .bottomPanel {
+    position: relative;
+  }
 }

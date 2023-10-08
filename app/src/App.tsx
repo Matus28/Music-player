@@ -1,8 +1,8 @@
-import { Navigate, Route, Routes } from "react-router";
 import Home from "./pages/Home";
-import { useAuthContext } from "./hooks/useAuthContext";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import { Navigate, Route, Routes } from "react-router";
+import { useAuthContext } from "./hooks/useAuthContext";
 import { BrowserRouter } from "react-router-dom";
 
 function App() {
