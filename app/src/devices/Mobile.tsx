@@ -16,7 +16,6 @@ import { setTrackListOrder } from "../utils/setTrackListOrder";
 import styles from "./Mobile.module.scss";
 import { ControlPanel } from "../components/ControlPanel/ControlPanel";
 import { DeviceContext } from "../context/DeviceContext";
-import { TabNavigation } from "../components/TabNavigation/TabNavigation";
 import { ActiveTabContext } from "../context/ActiveTabContext";
 
 const Mobile = (): JSX.Element => {
@@ -116,6 +115,10 @@ const Mobile = (): JSX.Element => {
         libraryQuery.data?.playlists ?? []
       )
     );
+
+    if (isMobile) {
+      tabContext?.setActiveTab("Tracklist");
+    }
   };
 
   const handleSelectSong = (orderIndex: number, playlistId: number): void => {
@@ -237,7 +240,6 @@ const Mobile = (): JSX.Element => {
             </div>
           </div>
           <div className={styles.bottomPanel}>
-            {isMobile && <TabNavigation />}
             <ControlPanel
               musicPlayer={musicPlayer}
               playingTrackList={playingTrackList ?? []}
