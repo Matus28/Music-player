@@ -24,6 +24,7 @@
     display: grid;
     grid-template-columns: 1fr 8fr 1fr;
     grid-template-rows: repeat(3, 1fr);
+    border: 2px solid grey;
   }
 
   .progress {
