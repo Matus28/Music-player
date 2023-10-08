@@ -38,7 +38,12 @@ The Music Player app's backend employs Express, a Node.js framework, for request
 
 ### Preview - current WIP version
 The printscreen of the current version, which is not finished.
-<!-- <div align="center">
-<img src="docs/homepage.png" width="80%" height="80%" align="center" alt="Printscreen homepage of the application.">
+<div align="center">
+  <h2>Desktop version</h2>
+<img src="docs/homepage-desktop.png" width="80%" height="80%" align="center" alt="Printscreen homepage of the application - desktop version.">
 </div>
--->
+
+<div align="center">
+  <h2>Mobile version</h2>
+<img src="docs/homepage-mobile.png" width="20%" height="20%" align="center" alt="Printscreen homepage of the application - mobile version.">
+</div>
