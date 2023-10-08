@@ -37,9 +37,6 @@ export const CurrentlyPlaying = (props: {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.image}>
-        <Cover path={props.currentSong?.songCover} />
-      </div>
       <div className={styles.info}>
         <h3>{props.currentSong ? props.currentSong.songName : ""}</h3>
         <span>{props.currentSong ? props.currentSong.songArtist : ""}</span>
@@ -60,6 +57,9 @@ export const CurrentlyPlaying = (props: {
           />
         </div>
       )}
+      <div className={styles.image}>
+        <Cover path={props.currentSong?.songCover} />
+      </div>
     </div>
   );
 };
