@@ -6,6 +6,8 @@ import { ProgressSlider } from "./ProgressSlider";
 import { Shuffle } from "./Shuffle";
 import { VolumeControls } from "./VolumeControls";
 import styles from "./ControlPanel.module.scss";
+import { TabNavigation } from "../TabNavigation/TabNavigation";
+import { DeviceContext } from "../../context/DeviceContext";
 
 interface ControlPanelProps {
   musicPlayer: React.MutableRefObject<HTMLAudioElement | null>;
@@ -25,8 +27,11 @@ export const ControlPanel = (props: ControlPanelProps): JSX.Element => {
   const [duration, setDuration] = React.useState<number>(0);
   const [position, setPosition] = React.useState<number>(0);
 
+  const isMobile = React.useContext(DeviceContext);
+
   return (
     <div className={styles.wrapper}>
+      {isMobile && <TabNavigation />}
       <LoadTrack
         currentSong={
           props.playingTrackList[props.playingSongIndex ?? 0] ?? null
