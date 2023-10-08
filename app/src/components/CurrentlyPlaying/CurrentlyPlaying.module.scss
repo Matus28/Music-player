@@ -32,10 +32,11 @@
   margin: 0;
   padding: 0;
   h3 {
+    display: flex;
+    flex-flow: row wrap;
     line-height: 35px;
     max-width: 420px;
     max-height: 70px;
-    overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     margin: 0;
@@ -102,5 +103,12 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+  .info {
+    h3 {
+      line-height: 1.5rem;
+      white-space: inherit;
+      max-height: none;
+    }
   }
 }
