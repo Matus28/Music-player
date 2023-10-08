@@ -33,6 +33,9 @@
     &:nth-child(odd) {
       background: #ececec;
     }
+    &:nth-last-child(1) {
+      margin-bottom: 6rem;
+    }
     &:hover {
       background-color: $global__hover-row;
     }
