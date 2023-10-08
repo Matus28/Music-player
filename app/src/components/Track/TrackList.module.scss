@@ -45,4 +45,13 @@
     max-height: none;
     height: 100%;
   }
+
+  .header {
+    width: 100%;
+    padding: 0.8rem 0 0.6rem;
+    h2 {
+      width: 100%;
+      text-align: center;
+    }
+  }
 }
