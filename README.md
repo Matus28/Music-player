@@ -7,6 +7,9 @@ The Music Player app is currently in active development, and work is ongoing to 
 
 MusicPlay is a dynamic web application designed for music enthusiasts, enabling them to seamlessly play, create, and manage playlists. With its intuitive user interface and backend infrastructure, MusicPlay transforms music consumption into a personalized and enjoyable experience.
 
+## Demo
+You can test demo version [here](https://music-player-zeta-fawn.vercel.app/) 
+
 ### Features
 1. Music Playback: Playing songs with basic controls - switching between songs, playing, pausing, skipping forward/backward, controlling volume etc.
 
@@ -21,6 +24,8 @@ MusicPlay is a dynamic web application designed for music enthusiasts, enabling 
 6. Backend Infrastructure: The backend of MusicPlay is powered by an API server. It interacts with a MySQL database to store and manage essential song information, including metadata and play history.
 
 7. User-friendly Interface: The frontend interface is designed for both simplicity and functionality. Intuitive navigation, easy-to-use controls, and visually appealing design make MusicPlay a joy to use.
+
+8. Responsive design
 
 ## Technology Stack:
 The project is divided into two codebases. The Frontend and the Backend. The main language is TypeScript for both parts.
