@@ -236,8 +236,8 @@ const Mobile = (): JSX.Element => {
               )}
             </div>
           </div>
-          {isMobile && <TabNavigation />}
           <div className={styles.bottomPanel}>
+            {isMobile && <TabNavigation />}
             <ControlPanel
               musicPlayer={musicPlayer}
               playingTrackList={playingTrackList ?? []}
